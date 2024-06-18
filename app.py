@@ -10,8 +10,8 @@ from streamlit_folium import st_folium, folium_static
 
 # Configurações da página
 st.set_page_config(
-    page_title="Buscador de Soros Antiveneno no Rio Grande do Sul",
-    page_icon="	:danger:",
+    page_title="Detecção de Agrotóxicos no Rio Grande do Sul",
+    page_icon="	:warning:",
     layout="wide",
     initial_sidebar_state='collapsed'
 )
