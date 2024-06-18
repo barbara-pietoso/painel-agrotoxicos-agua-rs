@@ -1,6 +1,12 @@
-import streamlit as st
 import pandas as pd
+import geopandas as gpd
+import plotly.express as px
+import streamlit as st
+import plotly.graph_objects as go
+import streamlit_js_eval
+import requests
 import folium
+from streamlit_folium import st_folium, folium_static
 
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
