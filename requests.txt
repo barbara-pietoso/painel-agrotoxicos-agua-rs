@@ -1,8 +1,8 @@
-pandas
-geopandas
-plotly
-streamlit
-streamlit-js-eval
-folium
-streamlit-folium
-openpyxl
+pip install pandas
+pip install geopandas
+pip install plotly
+pip install streamlit
+pip install streamlit-js-eval
+pip install folium
+pip install streamlit-folium
+pip install openpyxl
