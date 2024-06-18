@@ -8,6 +8,19 @@ import requests
 import folium
 from streamlit_folium import st_folium, folium_static
 
+# Configurações da página
+st.set_page_config(
+    page_title="Buscador de Soros Antiveneno no Rio Grande do Sul",
+    page_icon="	:danger:",
+    layout="wide",
+    initial_sidebar_state='collapsed'
+)
+col1, col2, col3 = st.columns([1,4,1])
+
+col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=200)
+col2.title('Buscador de Soros Antiveneno no Rio Grande do Sul')
+col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=300)
+
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
