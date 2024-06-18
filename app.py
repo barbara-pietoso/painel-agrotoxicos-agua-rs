@@ -11,7 +11,7 @@ from streamlit_folium import st_folium, folium_static
 # Configurações da página
 st.set_page_config(
     page_title="Detecção de Agrotóxicos no Rio Grande do Sul",
-    page_icon="	:risk:",
+    page_icon="	:skull:",
     layout="wide",
     initial_sidebar_state='collapsed'
 )
