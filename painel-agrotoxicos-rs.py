@@ -4,15 +4,6 @@ import plotly.graph_objs as go
 import plotly.express as px
 import folium 
 
-# Configurações da página
-st.set_page_config(
-    page_title="Buscador de Soros Antiveneno no Rio Grande do Sul",
-    page_icon="	:snake:",
-    layout="wide",
-    initial_sidebar_state='collapsed'
-)
-col1, col2, col3 = st.columns([1,4,1])
-
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
 # Filtrar as linhas com valores válidos de latitude e longitude
