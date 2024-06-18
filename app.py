@@ -47,7 +47,7 @@ mapa_px = px.scatter_mapbox(
     color="Detecções_Total",  # Use a coluna correta
     size="Detecções_Contagem",  # Use a coluna correta
     height=800,
-    color_continuous_scale=px.colors.sequential.Sunsetdark,
+    color_continuous_scale=px.colors.sequential.Oryel,
     size_max=15,
     mapbox_style="open-street-map"
 )
