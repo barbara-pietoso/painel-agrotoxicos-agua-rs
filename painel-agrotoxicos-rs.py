@@ -13,14 +13,11 @@ dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Detecções_Total', 'Detecções_Contagem']
 
-# Configurar o token do Mapbox
-px.set_mapbox_access_token('pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw')
-
 # Crie o mapa
-mapa_folium = folium.Map(location=[dados_filtrados["Latitude"].mean(), dados_filtrados["Longitude"].mean()], zoom_start=5)
+mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
 
 # Adicione marcadores
-for i, row in dados_filtrados.iterrows():
+for i, row in dados_consolid.iterrows():
     folium.Marker([row["Latitude"], row["Longitude"]]).add_to(mapa_folium)
 
 # Adicione camadas (opcional)
