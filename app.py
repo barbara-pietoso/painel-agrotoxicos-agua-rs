@@ -28,7 +28,7 @@ dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhX
 dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
 
 # Consolidar os dados
-dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count'], dropna=False).reset_index()
+dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
 dados_consolid
 # Crie o mapa
@@ -43,7 +43,7 @@ for i, row in dados_consolid.iterrows():
 folium.TileLayer('Stamen Toner', attr='Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.').add_to(mapa_folium)
 
 # Mostre o mapa
-folium_static(mapa_folium)
+#folium_static(mapa_folium)
 
 
 # Configurar o token do Mapbox
