@@ -2,6 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
@@ -35,7 +39,3 @@ mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
 
 # Mostre o mapa no Streamlit
 st.plotly_chart(mapa_px)
-
-
-# Mostre o mapa
-mapa_px.show()
