@@ -27,8 +27,7 @@ for i, row in dados_consolid.iterrows():
 
 # Adicione camadas (opcional)
 # Adicione uma camada de azulejos com diferentes estilos
-folium.TileLayer('Stamen Toner').add_to(mapa_folium)
+folium.TileLayer('Stamen Toner', attr='Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.').add_to(mapa_folium)
 
 # Mostre o mapa
-# mapa_folium.save("mapa_folium.html")  # Salve o mapa como HTML
-mapa_folium
+folium_static(mapa_folium)
