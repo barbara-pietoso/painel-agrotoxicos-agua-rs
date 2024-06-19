@@ -29,7 +29,7 @@ dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
 
 # Consolidar os dados
 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'],
-                                aggfunc=['sum', 'count'], dropna=False).reset_index()
+                                aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
 dados_consolid
 # Crie o mapa
