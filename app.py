@@ -28,11 +28,20 @@ dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhX
 dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
 
-# Consolidar os dados
-dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'],
-                                aggfunc=['sum', 'count']).reset_index()
+dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
+
+def processar_parametros(parametros):
+    for parametro in parametros.split(','):
+        # Remover vírgulas
+        parametro_formatado = parametro.replace(',', '')
+        # Criar a coluna para o parâmetro
+        dados_consolid[f'{parametro_formatado}'] = dados_consolid['Parametros detectados'].map(lambda p: 
+                                                                                                   any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
+
+dados_consolid['Parametros detectados'].apply(processar_parametros)
 dados_consolid
+
 # Crie o mapa
 mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
 
@@ -59,7 +68,7 @@ mapa_px = px.scatter_mapbox(
     lon="Longitude",
     title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
     zoom=6,
-    hover_data="Parametros detectados",  # Use a coluna correta
+    hover_data="Municipio",  # Use a coluna correta
     size="Detecções_Contagem",  # Use a coluna correta
     height=800,
     color_continuous_scale=px.colors.sequential.Sunsetdark,
