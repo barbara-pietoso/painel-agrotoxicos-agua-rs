@@ -42,20 +42,7 @@ def processar_parametros(parametros):
 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 col5, col4 = st.columns([3, 4]) 
-    with col5:      
-        # Mostre o mapa no Streamlit
-        st.plotly_chart(mapa_px)
-            
-        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
-        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
-            
-        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-                y='Parametro', x='Quantidade', orientation='h',
-                text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
-            
-        # Mostre o mapa no Streamlit
-        st.plotly_chart(grafico_top_agrotoxico)
-
+    
     with col4: 
         # Crie o mapa
         mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
@@ -93,4 +80,18 @@ col5, col4 = st.columns([3, 4])
         
         # Adicione uma legenda
         mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
+
+with col5:      
+        # Mostre o mapa no Streamlit
+        st.plotly_chart(mapa_px)
+            
+        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
+        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
+            
+        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+                y='Parametro', x='Quantidade', orientation='h',
+                text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
+            
+        # Mostre o mapa no Streamlit
+        st.plotly_chart(grafico_top_agrotoxico)
 
