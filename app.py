@@ -68,7 +68,12 @@ with col4:
         )
         
         # Adicione uma legenda
-        mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
+        mapa_px.update_layout(
+            legend_title="Detecção de Agrotóxicos no RS",
+            mapbox=dict(
+                center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
+                zoom=6
+            )
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
