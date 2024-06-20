@@ -79,7 +79,12 @@ with col4:
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
-with col5:             
+with col5:        
+      dados_tabela = pd.dados_consolid({
+            'CRS': ['CRS'],
+            'Parametros': [8:]
+            })
+                
         # Agrupa os dados pela coluna 'CRS' e soma as outras colunas para cada grupo
         soma_agrotoxicos = dados_consolid.groupby('CRS').sum().reset_index()
         
@@ -88,7 +93,7 @@ with col5:
         
         # Adiciona um filtro para selecionar o CRS
         crs_selecionado = st.selectbox('Selecione um CRS', soma_agrotoxicos['CRS'].unique())
-        
+            
         # Filtra os dados com base no CRS selecionado
         dados_filtrados = soma_agrotoxicos[soma_agrotoxicos['CRS'] == crs_selecionado]
         
