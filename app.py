@@ -87,7 +87,7 @@ with col5:
         parametros = soma_agrotoxicos.iloc[:, 8:]
         
         # Combina a coluna 'CRS' com as colunas de parâmetros selecionadas
-        dados_tabela = pd.concat([soma_agrotoxicos['CRS'], parametros], axis=1)
+        dados_tabela = pd.concat([dados_consolid['CRS'], parametros], axis=1)
         
         # Transforma o DataFrame em formato longo
         dados_tabela = dados_tabela.melt(id_vars=['CRS'], var_name='Parametro', value_name='Quantidade')
@@ -96,7 +96,7 @@ with col5:
         dados_tabela['CRS'] = dados_tabela['CRS'].astype('category')
         
         # Cria o gráfico de barras com Plotly
-        fig1 = px.bar(dados_tabela, x='CRS', y='Valor', color='Parametro', barmode='group', title='Soma dos Parâmetros por CRS')
+        fig1 = px.bar(dados_consolid, x='CRS', y='Valor', color='Parametro', barmode='group', title='Soma dos Parâmetros por CRS')
         
         # Ajusta o layout para garantir que todos os rótulos sejam exibidos
         fig1.update_layout(
