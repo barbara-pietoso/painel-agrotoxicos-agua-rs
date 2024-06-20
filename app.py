@@ -80,11 +80,10 @@ with col4:
         
         # Adicione uma legenda
         mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
-
-with col5:      
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
-            
+
+with col5:                 
         soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
             
