@@ -61,7 +61,7 @@ with col4:
             zoom=5,
             hover_data="Municipio",  # Use a coluna correta
             size="Detecções_Contagem",  # Use a coluna correta
-            height=900,
+            height=800,
             color_continuous_scale=px.colors.sequential.Sunsetdark,
             size_max=15, #tamanho maximo dos pontos
             mapbox_style="open-street-map"
@@ -72,7 +72,7 @@ with col4:
             legend_title="Detecção de Agrotóxicos no RS",
             mapbox=dict(
                 center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
-                zoom=6
+                zoom=5
             )
         )
         # Mostre o mapa no Streamlit
