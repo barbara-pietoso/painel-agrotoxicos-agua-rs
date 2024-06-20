@@ -80,53 +80,16 @@ with col4:
         st.plotly_chart(mapa_px)
 
 with col5:        
-      dados_tabela = pd.dados_consolid({
-            'CRS': ['CRS'],
-            'Parametros': [8:]
-            })
-                
-        # Agrupa os dados pela coluna 'CRS' e soma as outras colunas para cada grupo
-        soma_agrotoxicos = dados_consolid.groupby('CRS').sum().reset_index()
-        
-        # Configuração do aplicativo Streamlit
-        st.title('Análise de Agrotóxicos por CRS')
-        
-        # Adiciona um filtro para selecionar o CRS
-        crs_selecionado = st.selectbox('Selecione um CRS', soma_agrotoxicos['CRS'].unique())
-            
-        # Filtra os dados com base no CRS selecionado
-        dados_filtrados = soma_agrotoxicos[soma_agrotoxicos['CRS'] == crs_selecionado]
-        
-        # Cria o gráfico de barras com Plotly
-        fig = px.bar(
-            dados_filtrados,
-            x='CRS',
-            y='Parametros',  # Colunas de parâmetros para exibir no gráfico
-            barmode='group',  # Agrupa as barras para cada categoria de CRS
-            title=f'Soma dos Parâmetros para CRS {crs_selecionado}'
-        )
-        
-        # Ajusta o layout do gráfico
-        fig.update_layout(
-            xaxis={'categoryorder': 'total descending'},
-            xaxis_tickangle=-45,  # Ajusta o ângulo dos rótulos do eixo X para melhor legibilidade
-            yaxis_title='Valor',  # Título do eixo Y
-            legend_title='Parâmetros'  # Título da legenda
-        )
-        
-        # Exibe o gráfico no Streamlit
-        st.plotly_chart(fig)
-        # a partir daqui
-        #soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
-        #soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
+        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
+        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
-        #CRS = st.selectbox("Selecione a CRS", dados_consolid['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
-        #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
+        CRS = st.selectbox("Selecione a CRS", dados_consolid['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+    #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
                 
-        #grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-                 #y='Parametro', x='Quantidade', orientation='h',
-                 #text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
+        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+                 y='Parametro', x='Quantidade', orientation='h',
+                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
                 
         # Mostre o mapa no Streamlit
-        #st.plotly_chart(grafico_top_agrotoxico)
+        st.plotly_chart(grafico_top_agrotoxico)
 
