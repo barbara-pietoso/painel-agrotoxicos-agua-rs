@@ -72,6 +72,8 @@ with col4:
             zoom=6,
             hover_data="Municipio",  # Use a coluna correta
             size="Detecções_Contagem",  # Use a coluna correta
+            lat="-30",
+            long="-50",
             height=800,
             color_continuous_scale=px.colors.sequential.Sunsetdark,
             size_max=15,
