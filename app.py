@@ -43,7 +43,7 @@ dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 col5, col4 = st.columns([3, 4]) 
     
-    with col4: 
+with col4: 
         # Crie o mapa
         mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
         
