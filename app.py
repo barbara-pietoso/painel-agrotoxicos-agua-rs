@@ -80,7 +80,7 @@ with col4:
         st.plotly_chart(mapa_px)
 
 with col5:  
-        CRS = st.selectbox("Selecione a CRS", dados_geral['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+        CRS = st.selectbox("Selecione a CRS", dados_consolid['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
         #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
             
         soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
