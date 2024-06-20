@@ -83,7 +83,7 @@ col5, col4 = st.columns([3, 4])
 
 with col5:      
         # Mostre o mapa no Streamlit
-        st.plotly_chart(mapa_px)
+        st.plotly_chart(grafico_top_agrotoxico)
             
         soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
