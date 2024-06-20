@@ -49,7 +49,7 @@ with col4:
         px.set_mapbox_access_token(token)
 
     # Definindo o centro do mapa
-        center_lat = -30.2  # Latitude central aproximada do Rio Grande do Sul
+        center_lat = -30.1  # Latitude central aproximada do Rio Grande do Sul
         center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
            
         # Crie o mapa
@@ -63,7 +63,7 @@ with col4:
             size="Detecções_Contagem",  # Use a coluna correta
             height=850,
             color_continuous_scale=px.colors.sequential.Sunsetdark,
-            size_max=15,
+            size_max=15, #tamanho maximo dos pontos
             mapbox_style="open-street-map"
         )
         
