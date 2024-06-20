@@ -72,7 +72,7 @@ with col4:
             legend_title="Detecção de Agrotóxicos no RS",
             mapbox=dict(
                 center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
-                zoom=5.5
+                zoom=5.7
             )
         )
         # Mostre o mapa no Streamlit
