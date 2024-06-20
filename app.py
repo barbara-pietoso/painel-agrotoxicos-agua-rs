@@ -42,55 +42,55 @@ def processar_parametros(parametros):
 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 col5, col4 = st.columns([3, 4]) 
-with col5:      
-    # Mostre o mapa no Streamlit
-    st.plotly_chart(mapa_px)
-        
-    soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
-    soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
-        
-    grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-            y='Parametro', x='Quantidade', orientation='h',
-            text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
-        
-    # Mostre o mapa no Streamlit
-    st.plotly_chart(grafico_top_agrotoxico)
+    with col5:      
+        # Mostre o mapa no Streamlit
+        st.plotly_chart(mapa_px)
+            
+        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
+        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
+            
+        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+                y='Parametro', x='Quantidade', orientation='h',
+                text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
+            
+        # Mostre o mapa no Streamlit
+        st.plotly_chart(grafico_top_agrotoxico)
 
-with col4: 
-    # Crie o mapa
-    mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
-    
-    # Adicione marcadores
-    #for i, row in dados_consolid.iterrows():
-    #    folium.Marker([row["Latitude"], row["Longitude"]]).add_to(mapa_folium)
-    
-    # Adicione camadas (opcional)
-    # Adicione uma camada de azulejos com diferentes estilos
-    #folium.TileLayer('Stamen Toner', attr='Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.').add_to(mapa_folium)
-    
-    # Mostre o mapa
-    #folium_static(mapa_folium)
-    
-    
-    # Configurar o token do Mapbox
-    token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
-    px.set_mapbox_access_token(token)
-    
-    # Crie o mapa
-    mapa_px = px.scatter_mapbox(
-        data_frame=dados_consolid,
-        lat="Latitude",
-        lon="Longitude",
-        title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
-        zoom=6,
-        hover_data="Municipio",  # Use a coluna correta
-        size="Detecções_Contagem",  # Use a coluna correta
-        height=800,
-        color_continuous_scale=px.colors.sequential.Sunsetdark,
-        size_max=15,
-        mapbox_style="open-street-map"
-    )
-    
-    # Adicione uma legenda
-    mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
+    with col4: 
+        # Crie o mapa
+        mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
+        
+        # Adicione marcadores
+        #for i, row in dados_consolid.iterrows():
+        #    folium.Marker([row["Latitude"], row["Longitude"]]).add_to(mapa_folium)
+        
+        # Adicione camadas (opcional)
+        # Adicione uma camada de azulejos com diferentes estilos
+        #folium.TileLayer('Stamen Toner', attr='Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.').add_to(mapa_folium)
+        
+        # Mostre o mapa
+        #folium_static(mapa_folium)
+        
+        
+        # Configurar o token do Mapbox
+        token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
+        px.set_mapbox_access_token(token)
+        
+        # Crie o mapa
+        mapa_px = px.scatter_mapbox(
+            data_frame=dados_consolid,
+            lat="Latitude",
+            lon="Longitude",
+            title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
+            zoom=6,
+            hover_data="Municipio",  # Use a coluna correta
+            size="Detecções_Contagem",  # Use a coluna correta
+            height=800,
+            color_continuous_scale=px.colors.sequential.Sunsetdark,
+            size_max=15,
+            mapbox_style="open-street-map"
+        )
+        
+        # Adicione uma legenda
+        mapa_px.update_layout(legend_title="Detecção de Agrotóxicos no RS")
 
