@@ -45,7 +45,7 @@ col5, col4 = st.columns([3, 4])
     
 with col4: 
         # Crie o mapa
-        mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
+        #mapa_folium = folium.Map(location=[dados_consolid["Latitude"].mean(), dados_consolid["Longitude"].mean()], zoom_start=5)
         
         # Adicione marcadores
         #for i, row in dados_consolid.iterrows():
