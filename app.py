@@ -79,14 +79,10 @@ with col4:
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
-with col5: 
-    # Adicionar filtros
-    selecionar_crs = st.multiselect('Selecione a CRS', options=dados_consolid['CRS'].unique(), default=dados_consolid['CRS'].unique())
-
-    # Filtrar os dados com base na seleção do usuário
-    dados_filtrados = dados_consolid[
-    (dados_consolid['CRS'].isin(categoria_selecionada))
-    ]
+with col5:  
+        CRS = st.selectbox("Selecione a CRS", dados_geral['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+        #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
+            
         soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
                 
