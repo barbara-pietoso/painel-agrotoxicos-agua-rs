@@ -79,14 +79,21 @@ with col4:
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
-with col5:                 
-        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
-        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
+with col5: 
+    # Adicionar filtros
+    selecionar_crs = st.multiselect('Selecione a CRS', options=dados_consolid['CRS'].unique(), default=dados_consolid['CRS'].unique())
+
+    # Filtrar os dados com base na seleção do usuário
+    dados_filtrados = dados_consolid[
+    (dados_consolid['CRS'].isin(categoria_selecionada))
+    ]
+    soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
+    soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
             
-        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-                y='Parametro', x='Quantidade', orientation='h',
-                text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
+    grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+             y='Parametro', x='Quantidade', orientation='h',
+             text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
             
-        # Mostre o mapa no Streamlit
-        st.plotly_chart(grafico_top_agrotoxico)
+    # Mostre o mapa no Streamlit
+    st.plotly_chart(grafico_top_agrotoxico)
 
