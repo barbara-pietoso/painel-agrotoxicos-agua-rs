@@ -41,7 +41,7 @@ def processar_parametros(parametros):
 
 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
-col5, col4 = st.columns([3, 4]) 
+col5, col4 = st.columns([4, 4]) 
     
 with col4:  
         # Configurar o token do Mapbox
