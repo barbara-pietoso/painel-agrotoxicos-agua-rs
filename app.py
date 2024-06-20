@@ -62,7 +62,11 @@ with col4:
         # Configurar o token do Mapbox
         token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
         px.set_mapbox_access_token(token)
-        
+
+        # Definindo o centro do mapa
+        center_lat = -29.5  # Latitude central aproximada do Rio Grande do Sul
+        center_lon = -53.5  # Longitude central aproximada do Rio Grande do Sul
+            
         # Crie o mapa
         mapa_px = px.scatter_mapbox(
             data_frame=dados_consolid,
