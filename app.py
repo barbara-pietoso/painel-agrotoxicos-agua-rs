@@ -96,7 +96,7 @@ with col5:
         dados_tabela['CRS'] = dados_tabela['CRS'].astype('category')
         
         # Cria o gráfico de barras com Plotly
-        fig1 = px.bar(dados_consolid, x='CRS', y='Valor', color='Parametro', barmode='group', title='Soma dos Parâmetros por CRS')
+        fig1 = px.bar(dados_tabela, x='CRS', y='Valor', color='Parametro', barmode='group', title='Soma dos Parâmetros por CRS')
         
         # Ajusta o layout para garantir que todos os rótulos sejam exibidos
         fig1.update_layout(
