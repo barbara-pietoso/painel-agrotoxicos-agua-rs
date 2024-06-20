@@ -58,7 +58,7 @@ with col4:
             lat="Latitude",
             lon="Longitude",
             title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
-            zoom=4,
+            zoom=6,
             hover_data="Municipio",  # Use a coluna correta
             size="Detecções_Contagem",  # Use a coluna correta
             height=800,
