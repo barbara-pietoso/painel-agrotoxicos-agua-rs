@@ -61,7 +61,7 @@ with col4:
             zoom=5,
             hover_data="Municipio",  # Use a coluna correta
             size="Detecções_Contagem",  # Use a coluna correta
-            height=850,
+            height=900,
             color_continuous_scale=px.colors.sequential.Sunsetdark,
             size_max=15, #tamanho maximo dos pontos
             mapbox_style="open-street-map"
