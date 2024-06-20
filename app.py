@@ -49,7 +49,7 @@ with col4:
         px.set_mapbox_access_token(token)
 
     # Definindo o centro do mapa
-            center_lat = -29.5,  # Latitude central aproximada do Rio Grande do Sul
+            center_lat = -29.5  # Latitude central aproximada do Rio Grande do Sul
             center_lon = -53.5  # Longitude central aproximada do Rio Grande do Sul
            
         # Crie o mapa
