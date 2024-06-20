@@ -79,13 +79,11 @@ with col4:
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
-with col5:  
-       
-            
+with col5:             
         soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
-        CRS = st.selectbox("Selecione a CRS", soma_agrotoxicos['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+        CRS = st.selectbox("Selecione a CRS", dados_consolid['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
         #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
                 
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
