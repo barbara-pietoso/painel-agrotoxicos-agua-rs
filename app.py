@@ -101,7 +101,7 @@ with col5:
         fig = px.bar(
             dados_filtrados,
             x='CRS',
-            y=[8:],  # Colunas de parâmetros para exibir no gráfico
+            y='Parametros',  # Colunas de parâmetros para exibir no gráfico
             barmode='group',  # Agrupa as barras para cada categoria de CRS
             title=f'Soma dos Parâmetros para CRS {crs_selecionado}'
         )
