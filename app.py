@@ -92,8 +92,8 @@ with col5:
     #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
                 
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-                 y='Parametro', x='Quantidade', orientation='h',
-                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
+                 y='Parametro', x='Quantidade', orientation='h', height=700,
+                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', )
                 
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
