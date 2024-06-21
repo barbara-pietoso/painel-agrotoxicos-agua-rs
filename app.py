@@ -111,7 +111,7 @@ with col5:
         dados_agrupados = dados_filtrados.groupby(['Ano', 'Mês'])['Detecção'].sum().reset_index()
         
         # Criando o gráfico de linhas
-        grafico_tempo = px.line(dados_agrupados, x='Mês', y='Detecção', color='Ano', markers = True, labels={
+        grafico_tempo = px.line(dados_agrupados, x='Mês', y='Detecção', markers = True, labels={
             'Mês': 'Mês',
             'Detecção': 'Detecção',
             'Ano': 'Ano'
