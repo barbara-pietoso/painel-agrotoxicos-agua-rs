@@ -121,6 +121,5 @@ with col5:
         ))
         
         # Mostrar o gráfico
-        grafico_deteccoes_mensal
         grafico_deteccoes_mensal.update_traces(textposition="bottom right")
-
+        st.plotly_chart(grafico_deteccoes_mensal)
