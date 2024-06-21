@@ -108,10 +108,10 @@ with col5:
         
         # Agrupando os dados por ano e mês, e calculando alguma métrica (por exemplo, a média de outra coluna 'valor')
         # Aqui vou assumir que temos uma coluna 'valor' que queremos plotar
-        dados_agrupados = dados_filtrados.groupby(['Mês'])['Detecção'].sum().reset_index()
+        dados_agrupados = dados_filtrados.groupby(['Ano','Mês'])['Detecção'].sum().reset_index()
         
         # Criando o gráfico de linhas
-        grafico_tempo = px.line(dados_agrupados, x='Mês', y='Detecção', markers = True, labels={
+        grafico_tempo = px.bar(dados_agrupados, x='Mês', y='Detecção', color= 'Ano', labels={
             'Mês': 'Mês',
             'Detecção': 'Detecção',
             'Ano': 'Ano'
