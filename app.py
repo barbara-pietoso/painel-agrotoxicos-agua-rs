@@ -23,7 +23,9 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
-dados = dados[dados['CRS']==1]
+CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+dados = dados[dados['CRS']==CRS]
+
 # Filtrando apenas com detecção
 dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
 
@@ -87,8 +89,7 @@ with col5:
         soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index()
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
-        CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
-    #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
+        #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
                 
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
                  y='Parametro', x='Quantidade', orientation='h', height=700,
