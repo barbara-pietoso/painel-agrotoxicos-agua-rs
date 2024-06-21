@@ -97,26 +97,30 @@ with col5:
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
 
-        # Supondo que seu dataframe seja chamado 'dados_filtrados' e que a coluna de data seja 'Data da coleta'
-        # Convertendo a coluna 'Data da coleta' para datetime
-        dados_filtrados = dados_filtrados.reset_index(drop=True)
-        dados_filtrados['Data da coleta'] = pd.to_datetime(dados_filtrados['Data da coleta'])
+        # Supondo que 'dados_filtrados' já esteja carregado
+        dados['Data da coleta'] = pd.to_datetime(dados['Data da coleta'])
         
-        # Extraindo ano e mês
-        dados_filtrados['Ano'] = dados_filtrados['Data da coleta'].dt.year
-        dados_filtrados['Mês'] = dados_filtrados['Data da coleta'].dt.month
+        # Extraindo o mês das datas
+        dados['Mes'] = dados['Data da coleta'].dt.month
         
-        # Agrupando os dados por ano e mês, e calculando alguma métrica (por exemplo, a média de outra coluna 'valor')
-        # Aqui vou assumir que temos uma coluna 'valor' que queremos plotar
-        dados_agrupados = dados_filtrados.groupby(['Ano','Mês'])['Detecção'].sum().reset_index()
-        dados_agrupados['Ano'] = dados_agrupados['Ano'].astype(str)
-    
-        # Criando o gráfico de linhas
-        grafico_tempo = px.bar(dados_agrupados, x='Mês', y='Detecção', color= 'Ano', labels={
-            'Mês': 'Mês',
-            'Detecção': 'Detecção',
-            'Ano': 'Ano'
-        }, title='Linha do Tempo com Dados Agrupados por Ano e Mês')
+        # Calcular a porcentagem de detecções > 0 por mês
+        detec_perc_mes = (dados[dados['Detecção'] > 0].groupby('Mes').size() / dados.groupby('Mes').size() * 100).fillna(0)
+        #display(detec_perc_mes.fillna(0))
         
-        st.plotly_chart(grafico_tempo)
+        # Formatando os valores para exibição no gráfico
+        detec_perc_mes_text = detec_perc_mes.apply(lambda x: f'{x:.1f}%')
+        
+        # Criar o gráfico de linha
+        grafico_deteccoes_mensal = px.line(detec_perc_mes, markers = True, text= detec_perc_mes_text, x=detec_perc_mes.index, y=detec_perc_mes, title='Percentual de Detecção por Mês', labels={'y': 'Percentual de Detecção', 'Mes': 'Mês'})
+        
+        # Ajustar os rótulos dos meses
+        grafico_deteccoes_mensal.update_layout(xaxis=dict(
+            tickmode='array',
+            tickvals=list(range(1, 13)),
+            ticktext=['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        ))
+        
+        # Mostrar o gráfico
+        grafico_deteccoes_mensal
+        grafico_deteccoes_mensal.update_traces(textposition="bottom right")
 
