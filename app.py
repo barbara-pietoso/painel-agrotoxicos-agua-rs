@@ -84,7 +84,7 @@ with col4:
         st.plotly_chart(mapa_px)
 
 with col5:        
-        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index().loc[8:].reset_index(drop=True)
+        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index()
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
         CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
