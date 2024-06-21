@@ -32,6 +32,8 @@ dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
  
 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
 
+dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False)
+
 
 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
@@ -85,10 +87,10 @@ with col4:
         st.plotly_chart(mapa_px)
 
 with col5:        
-        soma_agrotoxicos = dados_consolid.sum().reset_index().loc[8:].reset_index(drop=True)
+        soma_agrotoxicos = dados_filtrados.sum().reset_index().loc[8:].reset_index(drop=True)
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
-        CRS = st.selectbox("Selecione a CRS", dados_consolid['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+        CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
     #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
                 
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
