@@ -24,9 +24,12 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
+# Filtrando apenas com detecção
+dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
+
 # Filtrar as linhas com valores válidos de latitude e longitude
-dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
-dados_filtrados
+dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
+ 
 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
 dados_filtrados
 
