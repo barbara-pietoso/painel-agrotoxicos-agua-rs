@@ -26,7 +26,9 @@ dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhX
 
 # Filtrar as linhas com valores válidos de latitude e longitude
 dados_filtrados = dados.dropna(subset=["Latitude", "Longitude"])
+dados_filtrados
 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
+dados_filtrados
 
 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
