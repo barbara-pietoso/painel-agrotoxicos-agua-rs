@@ -23,7 +23,7 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
-CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=None, placeholder="Nenhuma CRS selecionada")
+CRS = st.selectbox("Selecione a CRS", dados_filtrados['CRS'].unique(), index=1, placeholder="Nenhuma CRS selecionada")
 dados = dados[dados['CRS']==CRS]
 
 # Filtrando apenas com detecção
