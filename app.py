@@ -97,3 +97,25 @@ with col5:
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
 
+        # Supondo que seu dataframe seja chamado 'dados_filtrados' e que a coluna de data seja 'Data da coleta'
+        # Convertendo a coluna 'Data da coleta' para datetime
+        dados_filtrados = dados_filtrados.reset_index(drop=True)
+        dados_filtrados['Data da coleta'] = pd.to_datetime(dados_filtrados['Data da coleta'])
+        
+        # Extraindo ano e mês
+        dados_filtrados['Ano'] = dados_filtrados['Data da coleta'].dt.year
+        dados_filtrados['Mês'] = dados_filtrados['Data da coleta'].dt.month
+        
+        # Agrupando os dados por ano e mês, e calculando alguma métrica (por exemplo, a média de outra coluna 'valor')
+        # Aqui vou assumir que temos uma coluna 'valor' que queremos plotar
+        dados_agrupados = dados_filtrados.groupby(['Ano', 'Mês'])['Detecção'].sum().reset_index()
+        
+        # Criando o gráfico de linhas
+        grafico_tempo = px.line(dados_agrupados, x='Mês', y='Detecção', color='Ano', markers = True, labels={
+            'Mês': 'Mês',
+            'Detecção': 'Detecção',
+            'Ano': 'Ano'
+        }, title='Linha do Tempo com Dados Agrupados por Ano e Mês')
+        
+        st.plotly_chart(grafico_tempo)
+
