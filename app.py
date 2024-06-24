@@ -7,6 +7,7 @@ import streamlit_js_eval
 import requests
 import folium
 from streamlit_folium import st_folium, folium_static
+import altair as alt
 
 # Configurações da página
 st.set_page_config(
