@@ -164,7 +164,7 @@ with col5:
                 overlaying='y',
                 side='right'
             ),
-            legend=dict(x=0.4, y=1, bgcolor='rgba(255, 255, 255, 0)')
+            legend=dict(x=0.4, y=1.2, bgcolor='rgba(255, 255, 255, 0)')
         )
         
         # Mostrar o gráfico
