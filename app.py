@@ -108,7 +108,7 @@ with col5:
         
         # Calcular a porcentagem de detecções > 0 por mês
         detec_perc_mes = (dados[dados['Detecção'] > 0].groupby('Mes').size() / dados.groupby('Mes').size() * 100).fillna(0)
-        detec_perc_mes['total_amostras'] = dados.groupby('Mes').size() * 100).fillna(0)
+        detec_perc_mes['total_amostras'] = (dados.groupby('Mes').size() * 100).fillna(0)
         #display(detec_perc_mes.fillna(0))
         detec_perc_mes
         # Formatando os valores para exibição no gráfico
