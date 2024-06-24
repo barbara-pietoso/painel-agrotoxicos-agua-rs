@@ -25,7 +25,7 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 lista_crs_selectbox = sorted(dados['CRS'].unique())
 lista_crs_selectbox.insert(0,'Todas')
-CRS = st.selectbox("Selecione a CRS", sorted(dados['CRS'].unique()), index=0, placeholder="Nenhuma CRS selecionada")
+CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
 
 dados = dados[dados['CRS']==CRS]
 
