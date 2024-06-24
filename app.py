@@ -131,7 +131,8 @@ with col5:
             mode='lines+markers+text',
             text=detec_perc_mes_text,
             name='Percentual de Detecção',
-            line=dict(color='blue')
+            line=dict(color='blue'),
+            fill="tozeroy",
         )
         
         # Combinar os gráficos
