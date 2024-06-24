@@ -147,7 +147,7 @@ with col5:
         )
         
         # Ajustar o layout das traces para garantir que a linha esteja na frente
-        grafico_deteccoes_mensal.update_traces(textposition="top center")
+        grafico_deteccoes_mensal.update_traces(textposition="auto")
         grafico_deteccoes_mensal.data = grafico_deteccoes_mensal.data[::-1]
         
         # Mostrar o gráfico
