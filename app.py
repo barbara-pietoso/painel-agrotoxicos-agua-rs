@@ -89,17 +89,7 @@ with col4:
         st.plotly_chart(mapa_px)
 
 with col5:        
-        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index()
-        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
-        #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
-                
-        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
-                 x='Parametro', y='Quantidade', orientation='v', height=350,
-                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', )
-                
-        # Mostre o mapa no Streamlit
-        st.plotly_chart(grafico_top_agrotoxico)
 
         # Supondo que 'dados_filtrados' já esteja carregado
         dados['Data da coleta'] = pd.to_datetime(dados['Data da coleta'])
@@ -170,3 +160,14 @@ with col5:
         # Mostrar o gráfico
         st.plotly_chart(grafico_deteccoes_mensal)
 
+        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index()
+        soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
+
+        #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
+                
+        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+                 x='Parametro', y='Quantidade', orientation='v', height=350,
+                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', )
+                
+        # Mostre o mapa no Streamlit
+        st.plotly_chart(grafico_top_agrotoxico)
