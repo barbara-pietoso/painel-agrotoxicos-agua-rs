@@ -116,13 +116,35 @@ with col5:
         detec_perc_mes_total = (dados.groupby('Mes').size()).fillna(0)
         
         # Criar o gráfico de linha para a porcentagem de detecções
-        line_trace = go.Scatter(
+        grafico_deteccoes_mensal = px.line(
             x=detec_perc_mes.index,
             y=detec_perc_mes,
-            mode='lines+markers+text',
+            markers=True,
             text=detec_perc_mes_text,
-            name='Percentual de Detecção',
-            #line=dict(color='blue')
+            title='Percentual de Detecção por Mês',
+            labels={'y': 'Percentual de Detecção', 'x': 'Mês'}
+        )
+        
+        # Ajustar os rótulos dos meses
+        grafico_deteccoes_mensal.update_layout(
+            xaxis=dict(
+                tickmode='array',
+                tickvals=list(range(1, 13)),
+                ticktext=['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            ),
+            yaxis=dict(
+                title='Percentual de Detecção',
+                titlefont=dict(color='blue'),
+                tickfont=dict(color='blue')
+            ),
+            yaxis2=dict(
+                title='Total de Detecções',
+                titlefont=dict(color='orange'),
+                tickfont=dict(color='orange'),
+                overlaying='y',
+                side='right'
+            ),
+            legend=dict(x=0.01, y=0.99, bgcolor='rgba(255, 255, 255, 0)')
         )
         
         # Criar o gráfico de colunas para o total de detecções
@@ -131,37 +153,14 @@ with col5:
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            #marker_color='orange'
+            marker_color='orange'
         )
         
-        # Combinar os gráficos
-        grafico_deteccoes_mensal = go.Figure()
+        # Adicionar o gráfico de colunas ao gráfico de linhas
         grafico_deteccoes_mensal.add_trace(bar_trace)
-        grafico_deteccoes_mensal.add_trace(line_trace)
         
-        
-        # Ajustar os rótulos dos meses
-        grafico_deteccoes_mensal.update_layout(
-            title='Percentual de Detecção por Mês',
-            xaxis=dict(
-                tickmode='array',
-                tickvals=list(range(1, 13)),
-                ticktext=['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-            ),
-            yaxis=dict(
-                title='Percentual de Detecção',
-                #titlefont=dict(color='blue'),
-                #tickfont=dict(color='blue')
-            ),
-            yaxis2=dict(
-                title='Total de Detecções',
-                #titlefont=dict(color='orange'),
-                #tickfont=dict(color='orange'),
-                overlaying='y',
-                side='right'
-            ),
-            legend=dict(x=0.01, y=0.99, bgcolor='rgba(255, 255, 255, 0)')
-        )
+        # Mostrar o gráfico
+        st.plotly_chart(grafico_deteccoes_mensal)
         
         # Mostrar o gráfico
         st.plotly_chart(grafico_deteccoes_mensal)
