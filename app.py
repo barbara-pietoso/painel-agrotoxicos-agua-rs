@@ -157,7 +157,7 @@ with col5:
                 title='Total de Detecções',
                 #titlefont=dict(color='orange'),
                 #tickfont=dict(color='orange'),
-                overlaying='x',
+                overlaying='y',
                 side='right'
             ),
             legend=dict(x=0.01, y=0.99, bgcolor='rgba(255, 255, 255, 0)')
