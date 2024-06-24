@@ -125,7 +125,19 @@ with col5:
             labels={'y': 'Percentual de Detecção', 'x': 'Mês'}
         )
         
-        # Ajustar os rótulos dos meses
+        # Criar o gráfico de colunas para o total de detecções
+        bar_trace = go.Bar(
+            x=detec_perc_mes_total.index,
+            y=detec_perc_mes_total,
+            name='Total de Detecções',
+            yaxis='y2',
+            marker_color='orange'
+        )
+        
+        # Adicionar o gráfico de colunas ao gráfico de linhas
+        grafico_deteccoes_mensal.add_trace(bar_trace)
+        
+        # Ajustar os rótulos dos meses e layout
         grafico_deteccoes_mensal.update_layout(
             xaxis=dict(
                 tickmode='array',
@@ -147,20 +159,6 @@ with col5:
             legend=dict(x=0.01, y=0.99, bgcolor='rgba(255, 255, 255, 0)')
         )
         
-        # Criar o gráfico de colunas para o total de detecções
-        bar_trace = go.Bar(
-            x=detec_perc_mes_total.index,
-            y=detec_perc_mes_total,
-            name='Total de Detecções',
-            yaxis='y2',
-            marker_color='orange'
-        )
-        
-        # Adicionar o gráfico de colunas ao gráfico de linhas
-        grafico_deteccoes_mensal.add_trace(bar_trace)
-        
         # Mostrar o gráfico
         st.plotly_chart(grafico_deteccoes_mensal)
-        
-        # Mostrar o gráfico
-        st.plotly_chart(grafico_deteccoes_mensal)
+
