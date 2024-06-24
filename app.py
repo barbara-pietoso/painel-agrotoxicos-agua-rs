@@ -119,8 +119,7 @@ with col5:
         grafico_deteccoes_mensal = px.line(detec_perc_mes, markers = True, text= detec_perc_mes_text, x=detec_perc_mes.index,
                                            y=detec_perc_mes, title='Percentual de Detecção por Mês', labels={'y': 'Percentual de Detecção', 'Mes': 'Mês'})
 
-        # Adicionando as colunas
-        grafico_deteccoes_mensal.add_bar(x=detec_perc_mes_total.index, y=detec_perc_mes_total, name="Last year")
+
         
         # Ajustar os rótulos dos meses
         grafico_deteccoes_mensal.update_layout(xaxis=dict(
@@ -131,5 +130,9 @@ with col5:
         
         # Mostrar o gráfico
         grafico_deteccoes_mensal.update_traces(textposition="top center")
+
+        # Adicionando as colunas
+        grafico_deteccoes_mensal.add_bar(x=detec_perc_mes_total.index, y=detec_perc_mes_total, name="Last year")
+    
         st.plotly_chart(grafico_deteccoes_mensal)
 
