@@ -133,7 +133,7 @@ with col5:
             mode='lines+markers+text',
             text=detec_perc_mes_text,
             name='Percentual de Detecção',
-            line=dict(color='blue')
+            #line=dict(color='blue')
         )
         
         # Combinar os gráficos
@@ -153,8 +153,8 @@ with col5:
             ),
             yaxis=dict(
                 title='Percentual de Detecção',
-                titlefont=dict(color='blue'),
-                tickfont=dict(color='blue')
+                #titlefont=dict(color='blue'),
+                #tickfont=dict(color='blue')
             ),
             yaxis2=dict(
                 title='Total de Detecções',
