@@ -146,6 +146,6 @@ with col5:
         )
         
         # Mostrar o gráfico
-        grafico_deteccoes_mensal.update_traces(textposition="top center")
+        #grafico_deteccoes_mensal.update_traces(textposition="top center")
         st.plotly_chart(grafico_deteccoes_mensal)
 
