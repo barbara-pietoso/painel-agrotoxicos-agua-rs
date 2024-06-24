@@ -123,7 +123,8 @@ with col5:
             name='Total de Detecções',
             yaxis='y2',
             marker_color='orange',
-            opacity=0.8
+            opacity=0.3,
+            marker_line_width=1.5
         )
         
         # Criar o gráfico de linhas para a porcentagem de detecções
