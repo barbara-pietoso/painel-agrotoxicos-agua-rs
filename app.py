@@ -115,30 +115,35 @@ with col5:
         detec_perc_mes_text = detec_perc_mes.apply(lambda x: f'{x:.1f}%')
         detec_perc_mes_total = (dados.groupby('Mes').size()).fillna(0)
         
-        # Criar o gráfico de linha para a porcentagem de detecções
-        grafico_deteccoes_mensal = px.line(
-            x=detec_perc_mes.index,
-            y=detec_perc_mes,
-            markers=True,
-            text=detec_perc_mes_text,
-            title='Percentual de Detecção por Mês',
-            labels={'y': 'Percentual de Detecção', 'x': 'Mês'}
-        )
-        
         # Criar o gráfico de colunas para o total de detecções
         bar_trace = go.Bar(
             x=detec_perc_mes_total.index,
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            marker_color='orange'
+            marker_color='orange',
         )
         
-        # Adicionar o gráfico de colunas ao gráfico de linhas
-        grafico_deteccoes_mensal.add_trace(bar_trace)
+        # Criar o gráfico de linhas para a porcentagem de detecções
+        line_trace = go.Scatter(
+            x=detec_perc_mes.index,
+            y=detec_perc_mes,
+            mode='lines+markers+text',
+            text=detec_perc_mes_text,
+            name='Percentual de Detecção',
+            line=dict(color='blue')
+        )
         
-        # Ajustar os rótulos dos meses e layout
+        # Combinar os gráficos
+        grafico_deteccoes_mensal = go.Figure(
+            layout = dict(barcornerradius=15)
+        )
+        grafico_deteccoes_mensal.add_trace(bar_trace)
+        grafico_deteccoes_mensal.add_trace(line_trace)
+        
+        # Ajustar os rótulos dos meses
         grafico_deteccoes_mensal.update_layout(
+            title='Percentual de Detecção por Mês',
             xaxis=dict(
                 tickmode='array',
                 tickvals=list(range(1, 13)),
