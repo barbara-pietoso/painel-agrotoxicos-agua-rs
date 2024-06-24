@@ -122,7 +122,7 @@ with col5:
             mode='lines+markers+text',
             text=detec_perc_mes_text,
             name='Percentual de Detecção',
-            line=dict(color='blue')
+            #line=dict(color='blue')
         )
         
         # Criar o gráfico de colunas para o total de detecções
@@ -131,13 +131,14 @@ with col5:
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            marker_color='orange'
+            #marker_color='orange'
         )
         
         # Combinar os gráficos
         grafico_deteccoes_mensal = go.Figure()
-        grafico_deteccoes_mensal.add_trace(line_trace)
         grafico_deteccoes_mensal.add_trace(bar_trace)
+        grafico_deteccoes_mensal.add_trace(line_trace)
+        
         
         # Ajustar os rótulos dos meses
         grafico_deteccoes_mensal.update_layout(
