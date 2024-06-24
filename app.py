@@ -26,8 +26,8 @@ dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhX
 lista_crs_selectbox = sorted(dados['CRS'].unique())
 lista_crs_selectbox.insert(0,'Todas')
 CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
-
-dados = dados[dados['CRS']==CRS]
+if CRS != 'Todas':
+    dados = dados[dados['CRS']==CRS]
 
 # Filtrando apenas com detecção
 dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
