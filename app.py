@@ -160,7 +160,7 @@ with col5:
         # Mostrar o gráfico
         st.plotly_chart(grafico_deteccoes_mensal)
 
-        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=False).reset_index()
+        soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=True).reset_index()
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
 
         #soro = st.selectbox('Soro Antiveneno', dados_geral[dados_geral['Animal']==animal]['soro'].unique(), index=None, placeholder="Selecione o Soro Antiveneno")
