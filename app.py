@@ -115,41 +115,36 @@ with col5:
         detec_perc_mes_text = detec_perc_mes.apply(lambda x: f'{x:.1f}%')
         detec_perc_mes_total = (dados.groupby('Mes').size()).fillna(0)
         
-        # Criar o gráfico de linha para a porcentagem de detecções
-        grafico_deteccoes_mensal = px.line(detec_perc_mes, markers=True, text=detec_perc_mes_text, x=detec_perc_mes.index,
-                                           y=detec_perc_mes, title='Percentual de Detecção por Mês',
-                                           labels={'y': 'Percentual de Detecção', 'Mes': 'Mês'})
-        
-        # Adicionar o gráfico de colunas para o total de detecções
-        bar_trace = go.Bar(x=detec_perc_mes_total.index, y=detec_perc_mes_total, name="Total de Detecções", yaxis='y2')
-        grafico_deteccoes_mensal.add_trace(bar_trace)
-        
-        # Ajustar os rótulos dos meses e layout
-        grafico_deteccoes_mensal.update_layout(
-            xaxis=dict(
-                tickmode='array',
-                tickvals=list(range(1, 13)),
-                ticktext=['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-            ),
-            yaxis=dict(
-                title='Percentual de Detecção',
-                titlefont=dict(color='blue'),
-                tickfont=dict(color='blue')
-            ),
-            yaxis2=dict(
-                title='Total de Detecções',
-                titlefont=dict(color='orange'),
-                tickfont=dict(color='orange'),
-                overlaying='y',
-                side='right'
-            ),
-            legend=dict(x=0.01, y=0.99, bgcolor='rgba(255, 255, 255, 0)')
+        # Criar gráfico de barras para o total de detecções
+        bars = alt.Chart(detec_perc_mes_total).mark_bar(color='orange').encode(
+            x=alt.X('Mes:O', axis=alt.Axis(title='Mês', labelAngle=0)),
+            y=alt.Y('Total:Q', axis=alt.Axis(title='Total de Detecções')),
+            tooltip=['Mes', 'Total']
+        ).properties(
+            width=600,
+            height=400
         )
         
-        # Ajustar o layout das traces para garantir que a linha esteja na frente
+        # Criar gráfico de linha para a porcentagem de detecções
+        line = alt.Chart(detec_perc_mes).mark_line(color='blue').encode(
+            x=alt.X('Mes:O', axis=alt.Axis(title='Mês', labelAngle=0)),
+            y=alt.Y('Percentual:Q', axis=alt.Axis(title='Percentual de Detecção')),
+            tooltip=['Mes', 'Percentual']
+        )
         
-        grafico_deteccoes_mensal.data = grafico_deteccoes_mensal.data[::-1]
+        # Combinar os gráficos
+        combo_chart = alt.layer(bars, line).resolve_scale(
+            y='independent'
+        ).configure_axis(
+            labelFontSize=12,
+            titleFontSize=14
+        ).configure_legend(
+            titleFontSize=12,
+            labelFontSize=12
+        ).properties(
+            title='Percentual de Detecção por Mês'
+        )
         
-        # Mostrar o gráfico
-        st.plotly_chart(grafico_deteccoes_mensal)
+        # Mostrar o gráfico no Streamlit
+        st.altair_chart(combo_chart)
 
