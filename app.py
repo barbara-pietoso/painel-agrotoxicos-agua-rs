@@ -159,12 +159,12 @@ with col5:
             ),
             yaxis2=dict(
                 title='Total de Detecções',
-                titlefont=dict(color='orange'),
-                tickfont=dict(color='orange'),
+                #titlefont=dict(color='orange'),
+                #tickfont=dict(color='orange'),
                 overlaying='y',
                 side='right'
             ),
-            legend=dict(x=0.5, y=1, bgcolor='rgba(255, 255, 255, 0)')
+            legend=dict(x=0.4, y=1, bgcolor='rgba(255, 255, 255, 0)')
         )
         
         # Mostrar o gráfico
