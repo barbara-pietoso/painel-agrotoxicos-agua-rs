@@ -109,7 +109,7 @@ with col5:
         # Calcular a porcentagem de detecções > 0 por mês
         detec_perc_mes = (dados[dados['Detecção'] > 0].groupby('Mes').size() / dados.groupby('Mes').size() * 100).fillna(0)
         #display(detec_perc_mes.fillna(0))
-        
+        detec_perc_mes
         # Formatando os valores para exibição no gráfico
         detec_perc_mes_text = detec_perc_mes.apply(lambda x: f'{x:.1f}%')
         
