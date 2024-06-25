@@ -113,7 +113,7 @@ with col5:
             name='Total de Detecções',
             yaxis='y2',
             marker_color='darkblue',
-            opacity=0.3,
+            opacity=0.4,
             marker_line_width=1.5
         )
         
