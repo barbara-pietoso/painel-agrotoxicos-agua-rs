@@ -72,7 +72,7 @@ with col4:
             size="Detecções_Contagem",  # Use a coluna correta
             height=800,
             width=800,
-            color_continuous_scale=px.colors.sequential.Oranges,
+            color_discrete_sequence=["orange"],
             size_max=15, #tamanho maximo dos pontos
             mapbox_style="open-street-map"
         )
