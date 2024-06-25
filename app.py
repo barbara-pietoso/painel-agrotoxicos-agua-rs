@@ -37,7 +37,6 @@ dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
 dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
 
-
 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta', 'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
 dados_consolid
 dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
