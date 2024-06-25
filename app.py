@@ -112,7 +112,7 @@ with col5:
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            marker_color='orange',
+            marker_color='blue',
             opacity=0.3,
             marker_line_width=1.5
         )
@@ -124,7 +124,7 @@ with col5:
             mode='lines+markers+text',
             text=detec_perc_mes_text,
             name='Percentual de Detecção',
-            #line=dict(color='blue')
+            line=dict(color='red')
         )
         
         # Combinar os gráficos
