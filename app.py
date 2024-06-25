@@ -72,7 +72,7 @@ with col4:
             size="Detecções_Contagem",  # Use a coluna correta
             height=800,
             width=800,
-            color_continuous_scale=px.colors.sequential.Sunsetdark,
+            color_continuous_scale=px.colors.sequential.Oranges,
             size_max=15, #tamanho maximo dos pontos
             mapbox_style="open-street-map"
         )
@@ -166,7 +166,7 @@ with col5:
                         
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
                  x='Parametro', y='Quantidade', orientation='v', height=350, 
-                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', color_discrete_sequence=['green'])  # Azul muito escuro
+                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', color_discrete_sequence=['orange'])  # Azul muito escuro
                 
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
