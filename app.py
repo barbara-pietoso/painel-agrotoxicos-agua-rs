@@ -112,7 +112,7 @@ with col5:
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            marker_color='#021c52',
+            marker_color='#01133b',
             opacity=0.4,
             marker_line_width=1.5
         )
