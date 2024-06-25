@@ -166,7 +166,7 @@ with col5:
                         
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
                  x='Parametro', y='Quantidade', orientation='v', height=350, 
-                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', color_discrete_sequence=['green']  # Azul muito escuro)
+                 text='Quantidade', title = 'Quantidade de agrotóxicos encontrada')
                 
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
