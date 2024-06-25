@@ -112,8 +112,7 @@ with col5:
             y=detec_perc_mes_total,
             name='Total de Detecções',
             yaxis='y2',
-            marker_color='#00008B',
-            opacity=0.4,
+            marker_color='rgba(0, 0, 139, 0.4)',  # Azul muito escuro com opacidade
             marker_line_width=1.5
         )
         
