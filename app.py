@@ -65,8 +65,8 @@ col6, col7, col8, col9 = st.columns(4)
 #col6.metric("Total de Amostras Coletadas", count)
 
 # Quantas detecções
-total_deteccoes = len(dados_consolid)
-col7.metric("Total de Detecções", Detecções_Total)
+dados_consolid = len(dados_consolid)
+col7.metric("Detecções_Total", Detecções_Total)
 
 # Quantos municípios com detecção
 #municipios_com_detec = dados_detec['Municipio'].nunique()
