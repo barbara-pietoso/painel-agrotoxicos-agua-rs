@@ -57,24 +57,21 @@ dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
-# Adicionando métricas
-col6, col7, col8, col9 = st.columns(4)
-
 # Quantas amostras já foram coletadas
-#total_amostras = len(dados_consolid)
-#col6.metric("Total de Amostras Coletadas", count)
+total_amostras = len(dados)
+col6.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
-dados_consolid = len(dados_consolid)
-col7.metric("Detecções_Total", Detecções_Total)
+total_deteccoes = len(dados_detec)
+col7.metric("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
-#municipios_com_detec = dados_detec['Municipio'].nunique()
-#col8.metric("Municípios com Detecção", municipios_com_detec)
+municipios_com_detec = dados_detec['Municipio'].nunique()
+col8.metric("Municípios com Detecção", municipios_com_detec)
 
 # Quantos municípios houve coleta
-#municipios_com_coleta = dados['Municipio'].nunique()
-#col9.metric("Municípios com Coleta", municipios_com_coleta)
+municipios_com_coleta = dados['Municipio'].nunique()
+col9.metric("Municípios com Coleta", municipios_com_coleta)
 
 col5, col4 = st.columns([4, 4]) 
     
