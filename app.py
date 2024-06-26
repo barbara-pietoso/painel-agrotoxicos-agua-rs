@@ -65,7 +65,7 @@ total_amostras = len(dados)
 col6.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
-total_deteccoes = len(dados_detec)
+total_deteccoes = dados_detec['Detecção'].sum()
 col7.metric("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
