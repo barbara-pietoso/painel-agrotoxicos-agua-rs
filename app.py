@@ -24,7 +24,7 @@ col2.title('Detecção de Agrotóxicos no Rio Grande do Sul')
 col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=300)
 
 # Adicionando métricas
-col10, col6, col7, col8, col9 = st.columns(2,1,1,1,1)
+col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 
 with col10:
     filtro_container = st.container(border=True)
