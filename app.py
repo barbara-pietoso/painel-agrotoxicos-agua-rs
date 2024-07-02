@@ -11,7 +11,7 @@ import altair as alt
 
 # Configurações da página
 st.set_page_config(
-    page_title="Detecção de Agrotóxicos no Rio Grande do Sul",
+    page_title="           Detecção de Agrotóxicos no Rio Grande do Sul",
     page_icon="	:skull:",
     layout="wide",
     initial_sidebar_state='collapsed'
