@@ -33,48 +33,48 @@ with col10:
         # Carregar os dados
         dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
-        with coluna_crs:
-            #Filtro de CRS
-            lista_crs_selectbox = sorted(dados['CRS'].unique())
-            lista_crs_selectbox.insert(0,'Todas')
-            CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
-            if CRS != 'Todas':
-                dados = dados[dados['CRS']==CRS]
-
-        with coluna_zona:
-            #Filtro de área
-            area_selectbox = sorted(dados['Zona'].unique())
-            area_selectbox.insert(0,'Todas')
-            Zona = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
-            if Zona != 'Todas':
-                dados = dados[dados['Zona']==Zona]
-
+            with coluna_crs:
+                #Filtro de CRS
+                lista_crs_selectbox = sorted(dados['CRS'].unique())
+                lista_crs_selectbox.insert(0,'Todas')
+                CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
+                if CRS != 'Todas':
+                    dados = dados[dados['CRS']==CRS]
+    
+            with coluna_zona:
+                #Filtro de área
+                area_selectbox = sorted(dados['Zona'].unique())
+                area_selectbox.insert(0,'Todas')
+                Zona = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
+                if Zona != 'Todas':
+                    dados = dados[dados['Zona']==Zona]
+    
+                    
+                # Filtrando apenas com detecção
+                dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
                 
-            # Filtrando apenas com detecção
-            dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
-            
-            # Filtrar as linhas com valores válidos de latitude e longitude
-            dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
-            dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
-            
-            dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
-                                                                                       'CRS', 'Parametros detectados', 'Zona'], aggfunc=['sum', 'count']).reset_index()
-            try:
-                dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona', 'Detecções_Total', 'Detecções_Contagem', ]
-            except:
-                dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona']
-            
-            def processar_parametros(parametros):
-                for parametro in parametros.split(','):
-                    # Remover vírgulas
-                    parametro_formatado = parametro.replace(',', '')
-                    # Criar a coluna para o parâmetro
-                    dados_consolid[f'{parametro_formatado}'] = dados_consolid['Parametros detectados'].map(lambda p: 
-                                                                                                               any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
-            
-            dados_consolid['Parametros detectados'].apply(processar_parametros)
-            
-            dados_consolid['Parametros detectados'].apply(processar_parametros)
+                # Filtrar as linhas com valores válidos de latitude e longitude
+                dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
+                dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
+                
+                dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
+                                                                                           'CRS', 'Parametros detectados', 'Zona'], aggfunc=['sum', 'count']).reset_index()
+                try:
+                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona', 'Detecções_Total', 'Detecções_Contagem', ]
+                except:
+                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona']
+                
+                def processar_parametros(parametros):
+                    for parametro in parametros.split(','):
+                        # Remover vírgulas
+                        parametro_formatado = parametro.replace(',', '')
+                        # Criar a coluna para o parâmetro
+                        dados_consolid[f'{parametro_formatado}'] = dados_consolid['Parametros detectados'].map(lambda p: 
+                                                                                                                   any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
+                
+                dados_consolid['Parametros detectados'].apply(processar_parametros)
+                
+                dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 
     
