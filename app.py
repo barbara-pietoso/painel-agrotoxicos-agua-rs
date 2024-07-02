@@ -43,6 +43,8 @@ with col10:
         Zona = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
         if Zona != 'Todas':
             dados = dados[dados['Zona']==Zona]
+
+        dados
         
         # Filtrando apenas com detecção
         dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
