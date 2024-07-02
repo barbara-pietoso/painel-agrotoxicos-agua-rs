@@ -83,7 +83,7 @@ with col10:
             f"""
             <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
                 <h4>{titulo}</h4>
-                <p style="font-size: 20px; font-weight: bold; margin: 0;">{valor}</p>
+                <p style="font-size: 20px; font-weight: regular; margin: 0;">{valor}</p>
             </div>
             """,
             unsafe_allow_html=True
