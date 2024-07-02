@@ -31,6 +31,8 @@ with col10:
     with container_filtros:
         # Carregar os dados
         dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
+        
+        #Filtro de CRS
         lista_crs_selectbox = sorted(dados['CRS'].unique())
         lista_crs_selectbox.insert(0,'Todas')
         CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
