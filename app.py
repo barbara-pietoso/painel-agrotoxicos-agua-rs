@@ -77,41 +77,37 @@ with col10:
                 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 
-    # Função para centralizar métricas
+    # Centralização de métricas usando HTML e CSS
     def centralizar_metricas(titulo, valor):
         st.markdown(
             f"""
-            <div style="text-align: center;">
+            <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
                 <h3>{titulo}</h3>
                 <p style="font-size: 24px; font-weight: bold;">{valor}</p>
             </div>
             """,
             unsafe_allow_html=True
-        )
-    
+    )
+
 # Quantas amostras já foram coletadas
-with col6:
+with st.container():
     total_amostras = len(dados)
-    with st.container():
-        centralizar_metricas("Total de Amostras Coletadas", total_amostras)
+    centralizar_metricas("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
-with col7:
+with st.container():
     total_deteccoes = dados_detec['Detecção'].sum()
-    with st.container():
-        centralizar_metricas("Total de Detecções", total_deteccoes)
+    centralizar_metricas("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
-with col8:
+with st.container():
     municipios_com_detec = dados_detec['Municipio'].nunique()
-    with st.container():
-        centralizar_metricas("Municípios com Detecção", municipios_com_detec)
+    centralizar_metricas("Municípios com Detecção", municipios_com_detec)
 
 # Quantos municípios houve coleta
-with col9:
+with st.container():
     municipios_com_coleta = dados['Municipio'].nunique()
-    with st.container():
-        centralizar_metricas("Municípios com Coleta", municipios_com_coleta)
+    centralizar_metricas("Municípios com Coleta", municipios_com_coleta)
 
 
 col5, col4 = st.columns([4, 4]) 
