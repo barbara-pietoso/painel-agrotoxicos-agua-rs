@@ -33,7 +33,7 @@ with col10:
         # Carregar os dados
         dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
-            with coluna_crs:
+        with coluna_crs:
                 #Filtro de CRS
                 lista_crs_selectbox = sorted(dados['CRS'].unique())
                 lista_crs_selectbox.insert(0,'Todas')
@@ -41,7 +41,7 @@ with col10:
                 if CRS != 'Todas':
                     dados = dados[dados['CRS']==CRS]
     
-            with coluna_zona:
+        with coluna_zona:
                 #Filtro de área
                 area_selectbox = sorted(dados['Zona'].unique())
                 area_selectbox.insert(0,'Todas')
