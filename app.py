@@ -62,10 +62,9 @@ dados_consolid['Parametros detectados'].apply(processar_parametros)
 col6, col7, col8, col9 = st.columns(4)
 
 # Quantas amostras já foram coletadas
-with col6:
-    total_amostras = len(dados)
-    with st.container(border=True):
-    col6.metric("Total de Amostras Coletadas", total_amostras)
+total_amostras = len(dados)
+with st.container(border=True):
+col6.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
 total_deteccoes = dados_detec['Detecção'].sum()
