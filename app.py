@@ -44,8 +44,7 @@ with col10:
         if Zona != 'Todas':
             dados = dados[dados['Zona']==Zona]
 
-        dados
-        
+                
         # Filtrando apenas com detecção
         dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
         
@@ -55,7 +54,7 @@ with col10:
         
         dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
                                                                                    'CRS', 'Parametros detectados', 'Zona'], aggfunc=['sum', 'count']).reset_index()
-        
+        dados_consolid
         try:
             dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona' 'Detecções_Total', 'Detecções_Contagem', ]
         except:
