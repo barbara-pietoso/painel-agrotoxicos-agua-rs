@@ -29,7 +29,7 @@ col10, col6, col7, col8, col9 = st.columns(5)
 with col10:
     container_filtros = st.container(border=True)
     with container_filtros:
-        coluna_crs, coluna_zona = st.columns([1,1)
+        coluna_crs, coluna_zona = st.columns([1,1])
         # Carregar os dados
         dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
