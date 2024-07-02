@@ -78,19 +78,7 @@ with col10:
 
 
     
-
-# Função para centralizar métricas
-def centralizar_metricas(title, value):
-    st.markdown(
-        f"""
-        <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
-            <h3>{title}</h3>
-            <p style="font-size: 24px; font-weight: bold;">{value}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
+  
 # Quantas amostras já foram coletadas
 with col6:
     total_amostras = len(dados)
@@ -114,6 +102,18 @@ with col9:
     municipios_com_coleta = dados['Municipio'].nunique()
     with st.container(border=True):
         st.metric("Municípios com Coleta", municipios_com_coleta)
+
+    # Função para centralizar métricas
+    def centralizar_metricas(title, value):
+        st.markdown(
+            f"""
+            <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
+                <h3>{title}</h3>
+                <p style="font-size: 24px; font-weight: bold;">{value}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 col5, col4 = st.columns([4, 4]) 
     
