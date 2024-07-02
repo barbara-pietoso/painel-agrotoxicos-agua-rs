@@ -26,18 +26,6 @@ col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 # Adicionando métricas
 col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 
-# Função para centralizar métricas
-def centralizar_metricas(titulo, valor):
-    st.markdown(
-        f"""
-        <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
-            <h3>{titulo}</h3>
-            <p style="font-size: 24px; font-weight: bold;">{valor}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
 with col10:
     filtro_container = st.container(border=True)
     with filtro_container:
@@ -91,6 +79,18 @@ with col10:
 
     
 
+# Função para centralizar métricas
+def centralizar_metricas(titulo, valor):
+    st.markdown(
+        f"""
+        <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
+            <h3>{titulo}</h3>
+            <p style="font-size: 24px; font-weight: bold;">{valor}</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
 # Quantas amostras já foram coletadas
 with col6:
     total_amostras = len(dados)
