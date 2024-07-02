@@ -16,6 +16,20 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state='collapsed'
 )
+
+# Definindo o título centralizado
+st.markdown("""
+    <style>
+    .title {
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    </style>
+    <div class="title">Detecção de Agrotóxicos no Rio Grande do Sul</div>
+    """, unsafe_allow_html=True)
+
 col1, col2, col3 = st.columns([1,4,1], vertical_alignment="center")
 
 col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=200)
