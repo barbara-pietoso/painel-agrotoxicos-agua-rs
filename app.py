@@ -104,12 +104,12 @@ with col9:
         st.metric("Municípios com Coleta", municipios_com_coleta)
 
     # Função para centralizar métricas
-    def centralizar_metricas(title, value):
+    def centralizar_metricas(titulo, valor):
         st.markdown(
             f"""
             <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
-                <h3>{title}</h3>
-                <p style="font-size: 24px; font-weight: bold;">{value}</p>
+                <h3>{titulo}</h3>
+                <p style="font-size: 24px; font-weight: bold;">{valor}</p>
             </div>
             """,
             unsafe_allow_html=True
