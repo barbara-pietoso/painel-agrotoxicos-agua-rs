@@ -63,6 +63,13 @@ with col10:
         dados_consolid['Parametros detectados'].apply(processar_parametros)
         
         dados_consolid['Parametros detectados'].apply(processar_parametros)
+
+
+        area_selectbox = sorted(dados['Zona'].unique())
+        area_selectbox.insert(0,'Todas')
+        CRS = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
+        if Zona != 'Todas':
+            dados = dados[dados['Zona']==Zona]
     
 
 # Quantas amostras já foram coletadas
