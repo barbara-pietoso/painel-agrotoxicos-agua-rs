@@ -68,16 +68,22 @@ with col6:
         st.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
-total_deteccoes = dados_detec['Detecção'].sum()
-col7.metric("Total de Detecções", total_deteccoes)
+with col7:
+    total_deteccoes = dados_detec['Detecção'].sum()
+    with st.container(border=True):
+        st.metric("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
-municipios_com_detec = dados_detec['Municipio'].nunique()
-col8.metric("Municípios com Detecção", municipios_com_detec)
+with col8:
+    municipios_com_detec = dados_detec['Municipio'].nunique()
+    with st.container(border=True):
+        st.metric("Municípios com Detecção", municipios_com_detec)
 
 # Quantos municípios houve coleta
-municipios_com_coleta = dados['Municipio'].nunique()
-col9.metric("Municípios com Coleta", municipios_com_coleta)
+with col9:
+    municipios_com_coleta = dados['Municipio'].nunique()
+    with st.container(border=True):
+        st.metric("Municípios com Coleta", municipios_com_coleta)
 
 col5, col4 = st.columns([4, 4]) 
     
