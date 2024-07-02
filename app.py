@@ -23,43 +23,46 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png
 col2.title('Detecção de Agrotóxicos no Rio Grande do Sul')
 col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=300)
 
-# Carregar os dados
-dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
-lista_crs_selectbox = sorted(dados['CRS'].unique())
-lista_crs_selectbox.insert(0,'Todas')
-CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
-if CRS != 'Todas':
-    dados = dados[dados['CRS']==CRS]
-
-# Filtrando apenas com detecção
-dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
-
-# Filtrar as linhas com valores válidos de latitude e longitude
-dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
-dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
-
-dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
-                                                                           'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
-
-try:
-    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
-except:
-    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados']
-
-def processar_parametros(parametros):
-    for parametro in parametros.split(','):
-        # Remover vírgulas
-        parametro_formatado = parametro.replace(',', '')
-        # Criar a coluna para o parâmetro
-        dados_consolid[f'{parametro_formatado}'] = dados_consolid['Parametros detectados'].map(lambda p: 
-                                                                                                   any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
-
-dados_consolid['Parametros detectados'].apply(processar_parametros)
-
-dados_consolid['Parametros detectados'].apply(processar_parametros)
-
 # Adicionando métricas
-col6, col7, col8, col9 = st.columns(4)
+col6, col7, col8, col9, col10= st.columns(5)
+
+with col10
+
+    # Carregar os dados
+    dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
+    lista_crs_selectbox = sorted(dados['CRS'].unique())
+    lista_crs_selectbox.insert(0,'Todas')
+    CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
+    if CRS != 'Todas':
+        dados = dados[dados['CRS']==CRS]
+    
+    # Filtrando apenas com detecção
+    dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
+    
+    # Filtrar as linhas com valores válidos de latitude e longitude
+    dados_filtrados = dados_detec.dropna(subset=["Latitude", "Longitude"])
+    dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
+    
+    dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
+                                                                               'CRS', 'Parametros detectados'], aggfunc=['sum', 'count']).reset_index()
+    
+    try:
+        dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Detecções_Total', 'Detecções_Contagem', ]
+    except:
+        dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados']
+    
+    def processar_parametros(parametros):
+        for parametro in parametros.split(','):
+            # Remover vírgulas
+            parametro_formatado = parametro.replace(',', '')
+            # Criar a coluna para o parâmetro
+            dados_consolid[f'{parametro_formatado}'] = dados_consolid['Parametros detectados'].map(lambda p: 
+                                                                                                       any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
+    
+    dados_consolid['Parametros detectados'].apply(processar_parametros)
+    
+    dados_consolid['Parametros detectados'].apply(processar_parametros)
+    
 
 # Quantas amostras já foram coletadas
 with col6:
