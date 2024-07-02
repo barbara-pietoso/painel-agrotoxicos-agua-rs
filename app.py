@@ -36,6 +36,13 @@ with col10:
         CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
         if CRS != 'Todas':
             dados = dados[dados['CRS']==CRS]
+
+        #Filtro de área
+        area_selectbox = sorted(dados['Zona'].unique())
+        area_selectbox.insert(0,'Todas')
+        CRS = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
+        if Zona != 'Todas':
+            dados = dados[dados['Zona']==Zona]
         
         # Filtrando apenas com detecção
         dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
@@ -65,11 +72,6 @@ with col10:
         dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 
-        area_selectbox = sorted(dados['Zona'].unique())
-        area_selectbox.insert(0,'Todas')
-        CRS = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
-        if Zona != 'Todas':
-            dados = dados[dados['Zona']==Zona]
     
 
 # Quantas amostras já foram coletadas
