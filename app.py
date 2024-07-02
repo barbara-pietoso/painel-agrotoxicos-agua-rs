@@ -80,12 +80,12 @@ with col10:
     
 
 # Função para centralizar métricas
-def centralizar_metricas(titulo, valor):
+def centralizar_metricas(title, value):
     st.markdown(
         f"""
         <div style="text-align: center; border: 1px solid #e6e6e6; padding: 10px; border-radius: 5px;">
-            <h3>{titulo}</h3>
-            <p style="font-size: 24px; font-weight: bold;">{valor}</p>
+            <h3>{title}</h3>
+            <p style="font-size: 24px; font-weight: bold;">{value}</p>
         </div>
         """,
         unsafe_allow_html=True
