@@ -11,13 +11,13 @@ import altair as alt
 
 # Configurações da página
 st.set_page_config(
-    page_title="     Detecção de Agrotóxicos no Rio Grande do Sul",
+    page_title="Detecção de Agrotóxicos no Rio Grande do Sul",
     page_icon="	:skull:",
     layout="wide",
     initial_sidebar_state='collapsed'
 )
 
-col1, col2, col3 = st.columns([1,3.5,1], vertical_alignment="center")
+col1, col2, col3 = st.columns([2,3,1], vertical_alignment="center")
 
 col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=200)
 col2.title('Detecção de Agrotóxicos no Rio Grande do Sul')
