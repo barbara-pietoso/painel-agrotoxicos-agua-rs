@@ -76,50 +76,29 @@ with col10:
                 
                 dados_consolid['Parametros detectados'].apply(processar_parametros)
 
-# Função para centralizar métricas com parâmetros ajustáveis
-def centralizar_metricas(titulo, valor, font_size=16, font_weight='normal', border_size='1px', border_radius='5px', padding='10px', border_color='#e6e6e6'):
-    st.markdown(
-        f"""
-        <div style="
-            text-align: center; 
-            border: {border_size} solid {border_color}; 
-            padding: {padding}; 
-            border-radius: {border_radius};
-            width: 100%;
-        ">
-            <h4>{titulo}</h4>
-            <p style="
-                font-size: {font_size}px; 
-                font-weight: {font_weight}; 
-                margin: 0;
-            ">{valor}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 # Quantas amostras já foram coletadas
 with col6:
     total_amostras = len(dados)
-    with st.container():
-        centralizar_metricas("Total de Amostras Coletadas", total_amostras, font_size=16, font_weight='normal', border_size='1px', border_radius='5px', padding='10px', border_color='#e6e6e6')
+    with st.container(border=True):
+        st.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
 with col7:
     total_deteccoes = dados_detec['Detecção'].sum()
-    with st.container():
-        centralizar_metricas("Total de Detecções", total_deteccoes, font_size=16, font_weight='normal', border_size='1px', border_radius='5px', padding='10px', border_color='#e6e6e6')
+    with st.container(border=True):
+        st.metric("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
 with col8:
     municipios_com_detec = dados_detec['Municipio'].nunique()
-    with st.container():
-        centralizar_metricas("Municípios com Detecção", municipios_com_detec, font_size=16, font_weight='normal', border_size='1px', border_radius='5px', padding='10px', border_color='#e6e6e6')
+    with st.container(border=True):
+        st.metric("Municípios com Detecção", municipios_com_detec)
 
 # Quantos municípios houve coleta
 with col9:
     municipios_com_coleta = dados['Municipio'].nunique()
-    with st.container():
-        centralizar_metricas("Municípios com Coleta", municipios_com_coleta, font_size=16, font_weight='normal', border_size='1px', border_radius='5px', padding='10px', border_color='#e6e6e6')
+    with st.container(border=True):
+        st.metric("Municípios com Coleta", municipios_com_coleta)
 
 col5, col4 = st.columns([4, 4]) 
     
