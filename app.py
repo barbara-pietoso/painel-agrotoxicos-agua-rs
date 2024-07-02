@@ -40,7 +40,7 @@ with col10:
         #Filtro de área
         area_selectbox = sorted(dados['Zona'].unique())
         area_selectbox.insert(0,'Todas')
-        CRS = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
+        Zona = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
         if Zona != 'Todas':
             dados = dados[dados['Zona']==Zona]
         
