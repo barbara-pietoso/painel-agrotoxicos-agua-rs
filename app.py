@@ -87,8 +87,6 @@ with col10:
                                                                                                                    any(parametro_formatado == parametro_atual for parametro_atual in p.split(',')))
                 
                 dados_consolid['Parametros detectados'].apply(processar_parametros)
-                
-                dados_consolid['Parametros detectados'].apply(processar_parametros)
 
 # Quantas amostras já foram coletadas
 with col6:
@@ -135,32 +133,32 @@ with col4:
         with mapa_pontos:
             st.header('Mapa de Pontos de Detecção de Agrotóxicos no RS')
            
-        # Crie o mapa
-        mapa_px = px.scatter_mapbox(
-            data_frame=dados_consolid,
-            lat="Latitude",
-            lon="Longitude",
-            title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
-            zoom=6,
-            hover_data="Municipio",  # Use a coluna correta
-            size="Detecções_Contagem",  # Use a coluna correta
-            height=800,
-            width=800,
-            color_discrete_sequence=["#f2a744"],
-            size_max=15, #tamanho maximo dos pontos
-            mapbox_style="open-street-map"
-        )
-        
-        # Adicione uma legenda
-        mapa_px.update_layout(
-            legend_title="Detecção de Agrotóxicos no RS",
-            mapbox=dict(
-                center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
-                zoom=5.7
+            # Crie o mapa
+            mapa_px = px.scatter_mapbox(
+                data_frame=dados_consolid,
+                lat="Latitude",
+                lon="Longitude",
+                title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
+                zoom=6,
+                hover_data="Municipio",  # Use a coluna correta
+                size="Detecções_Contagem",  # Use a coluna correta
+                height=800,
+                width=800,
+                color_discrete_sequence=["#f2a744"],
+                size_max=15, #tamanho maximo dos pontos
+                mapbox_style="open-street-map"
             )
-        )
-        # Mostre o mapa no Streamlit
-        st.plotly_chart(mapa_px)
+            
+            # Adicione uma legenda
+            mapa_px.update_layout(
+                legend_title="Detecção de Agrotóxicos no RS",
+                mapbox=dict(
+                    center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
+                    zoom=5.7
+                )
+            )
+            # Mostre o mapa no Streamlit
+            st.plotly_chart(mapa_px)
 
         with mapa_coropletico:
             st.header('Municípios com Detecção de Agrotóxicos no RS')
