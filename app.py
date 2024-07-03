@@ -29,7 +29,7 @@ col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 with col10:
     filtro_container = st.container(border=True)
     with filtro_container:
-        coluna_crs, coluna_zona = st.columns([1,1])
+        coluna_crs, coluna_captacao = st.columns([1,1])
         # Carregar os dados
         dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
@@ -43,11 +43,11 @@ with col10:
     
         with coluna_zona:
                 #Filtro de área
-                area_selectbox = sorted(dados['Zona'].unique())
-                area_selectbox.insert(0,'Todas')
-                Zona = st.selectbox("Selecione o tipo de área", area_selectbox, index=0, placeholder="Nenhuma área selecionada")
-                if Zona != 'Todas':
-                    dados = dados[dados['Zona']==Zona]
+                captacao_selectbox = sorted(dados['Zona'].unique())
+                captacao_selectbox.insert(0,'Todas')
+                Captação = st.selectbox("Selecione o tipo de captação", captacao_selectbox, index=0, placeholder="Nenhuma captação selecionada")
+                if Captação != 'Todas':
+                    dados = dados[dados['Tipo de manancial']==Captação]
     
                     
                 # Filtrando apenas com detecção
@@ -60,9 +60,9 @@ with col10:
                 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
                                                                                            'CRS', 'Parametros detectados', 'Zona'], aggfunc=['sum', 'count']).reset_index()
                 try:
-                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona', 'Detecções_Total', 'Detecções_Contagem', ]
+                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Tipo de manancial', 'Detecções_Total', 'Detecções_Contagem', ]
                 except:
-                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Zona']
+                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Captação']
                 
                 def processar_parametros(parametros):
                     for parametro in parametros.split(','):
