@@ -29,11 +29,14 @@ col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 
+# Substituir espaços em branco por "Sem informação" na coluna 'Tipo de manancial'
+dados['Tipo de manancial'] = dados['Tipo de manancial'].replace(r'^\s*$', 'Sem informação', regex=True)
+
 # Converter a coluna 'Tipo de manancial' para string
 dados['Tipo de manancial'] = dados['Tipo de manancial'].astype(str)
 
 # Substituir os valores NaN por "Sem informação"
-dados['Tipo de manancial'] = dados['Tipo de manancial'].fillna('Sem informação até o momento')
+#dados['Tipo de manancial'] = dados['Tipo de manancial'].fillna('Sem informação até o momento')
 
 with col10:
     filtro_container = st.container(border=True)
