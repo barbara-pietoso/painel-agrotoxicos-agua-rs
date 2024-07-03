@@ -34,7 +34,7 @@ dados['Tipo de manancial'] = dados['Tipo de manancial'].astype(str)
 dados
 
 # Substituir espaços em branco por "Sem informação" na coluna 'Tipo de manancial'
-dados['Tipo de manancial'] = dados['Tipo de manancial'].replace('nan', 'Sem informação', regex=True)
+#dados['Tipo de manancial'] = dados['Tipo de manancial'].replace('nan', 'Sem informação', regex=True)
 
 # Substituir os valores NaN por "Sem informação"
 #dados['Tipo de manancial'] = dados['Tipo de manancial'].fillna('Sem informação até o momento')
