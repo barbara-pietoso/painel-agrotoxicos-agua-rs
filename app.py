@@ -131,7 +131,6 @@ with col4:
         
         # Definir layout baseado na aba selecionada
         with mapa_pontos:
-            st.header('Mapa de Pontos de Detecção de Agrotóxicos no RS')
            
             # Crie o mapa
             mapa_px = px.scatter_mapbox(
