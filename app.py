@@ -180,11 +180,11 @@ with col4:
                           color_continuous_scale = 'Reds',
                           center ={'lat':-30.452349861219243, 'lon':-53.55320517512141},
                           zoom=5.5,
-                          mapbox_style="carto-darkmatter",
+                          mapbox_style="open-street-map",
                           hover_name='NM_MUN',
                           width=800,
                           height=700,
-                          template='plotly_dark',
+                          #template='plotly_dark',
                           title = f'Coletas agrotóxicos')
             map_fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             st.plotly_chart(map_fig)
