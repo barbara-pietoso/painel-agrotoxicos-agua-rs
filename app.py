@@ -49,12 +49,12 @@ municipios = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geoda
 # Remover acentos e converter para maiúsculo
 municipios['NM_MUN'] = municipios['NM_MUN'].apply(lambda x: unidecode(x).upper())
 
-#Juntando tudo no mesmo geodataframe
-dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
-
 # Número de coletas por município
 municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
 municipios_coletados.columns = ['Municipio', 'Coletas']
+
+#Juntando tudo no mesmo geodataframe
+dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
 
 with col10:
     filtro_container = st.container(border=True)
