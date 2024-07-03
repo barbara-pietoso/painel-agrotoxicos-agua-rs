@@ -129,10 +129,10 @@ with col4:
         st.title('Mapas no Streamlit')
         
         # Criar barra lateral para abas
-        tab = st.sidebar.radio('Escolha um mapa:', ['Mapa de Pontos', 'Mapa Cloroplético'])
+        mapa_pontos, mapa_coropletico = st.tabs(['Mapa de Pontos', 'Mapa Cloroplético'])
         
         # Definir layout baseado na aba selecionada
-    if tab == 'Mapa de Pontos':
+        with mapa_pontos:
             st.header('Mapa de Pontos de Detecção de Agrotóxicos no RS')
            
         # Crie o mapa
@@ -162,7 +162,7 @@ with col4:
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
 
-    elif tab == 'Mapa Cloroplético':
+    with mapa_coropletico:
         st.header('Municípios com Detecção de Agrotóxicos no RS')
         
         # Criar o mapa cloroplético
