@@ -121,9 +121,19 @@ with col4:
         token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
         px.set_mapbox_access_token(token)
 
-    # Definindo o centro do mapa
+        # Definindo o centro do mapa
         center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
         center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+
+        # Criando a aplicação no Streamlit
+        st.title('Mapas no Streamlit')
+        
+        # Criar barra lateral para abas
+        tab = st.sidebar.radio('Escolha um mapa:', ['Mapa de Pontos', 'Mapa Cloroplético'])
+        
+        # Definir layout baseado na aba selecionada
+    if tab == 'Mapa de Pontos':
+            st.header('Mapa de Pontos de Detecção de Agrotóxicos no RS')
            
         # Crie o mapa
         mapa_px = px.scatter_mapbox(
@@ -151,6 +161,27 @@ with col4:
         )
         # Mostre o mapa no Streamlit
         st.plotly_chart(mapa_px)
+
+    elif tab == 'Mapa Cloroplético':
+        st.header('Municípios com Detecção de Agrotóxicos no RS')
+        
+        # Criar o mapa cloroplético
+        mapa_cloropleto = px.choropleth_mapbox(
+        data_frame=dados_consolid,
+        geojson=geojson_data,  # Substitua pelo seu GeoJSON
+        locations='Municipio',  # Coluna no DataFrame que contém os nomes dos municípios
+        featureidkey="properties.name",  # Chave no GeoJSON que corresponde ao nome do município
+        color='Detecções_Contagem',
+        hover_name='Municipio',
+        title='Mapa Cloroplético de Detecção de Agrotóxicos no RS',
+        mapbox_style="carto-positron",
+        zoom=6,
+        center={"lat": center_lat, "lon": center_lon},
+        opacity=0.5
+    )
+
+        # Mostrar o mapa cloroplético no Streamlit
+        st.plotly_chart(mapa_cloropleto)
 
 with col5:        
 
