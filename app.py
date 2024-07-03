@@ -43,7 +43,7 @@ with col10:
     
         with coluna_captacao:
                 #Filtro de área
-                captacao_selectbox = sorted(dados['Zona'].unique())
+                captacao_selectbox = sorted(dados['Tipo de manancial'].unique())
                 captacao_selectbox.insert(0,'Todas')
                 Captação = st.selectbox("Selecione o tipo de captação", captacao_selectbox, index=0, placeholder="Nenhuma captação selecionada")
                 if Captação != 'Todas':
