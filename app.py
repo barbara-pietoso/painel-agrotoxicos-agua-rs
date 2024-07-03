@@ -171,6 +171,7 @@ with col4:
                     zoom=5.7
                 )
             )
+            mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             # Mostre o mapa no Streamlit
             st.plotly_chart(mapa_px)
 
