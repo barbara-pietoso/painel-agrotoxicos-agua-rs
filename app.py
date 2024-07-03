@@ -41,7 +41,7 @@ with col10:
                 if CRS != 'Todas':
                     dados = dados[dados['CRS']==CRS]
     
-        with coluna_zona:
+        with coluna_captacao:
                 #Filtro de área
                 captacao_selectbox = sorted(dados['Zona'].unique())
                 captacao_selectbox.insert(0,'Todas')
