@@ -58,11 +58,11 @@ with col10:
                 dados_filtrados['Parametros detectados'].fillna('Verificando', inplace=True)
                 
                 dados_consolid = pd.pivot_table(dados_filtrados, values='Detecção', index=['Latitude','Longitude', 'Municipio', 'Ponto de Coleta',
-                                                                                           'CRS', 'Parametros detectados', 'Zona'], aggfunc=['sum', 'count']).reset_index()
+                                                                                           'CRS', 'Parametros detectados', 'Tipo de manancial'], aggfunc=['sum', 'count']).reset_index()
                 try:
                     dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Tipo de manancial', 'Detecções_Total', 'Detecções_Contagem', ]
                 except:
-                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Captação']
+                    dados_consolid.columns = ['Latitude', 'Longitude', 'Municipio', 'Ponto de Coleta', 'CRS','Parametros detectados', 'Tipo de manancial']
                 
                 def processar_parametros(parametros):
                     for parametro in parametros.split(','):
