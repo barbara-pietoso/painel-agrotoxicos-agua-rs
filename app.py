@@ -28,6 +28,7 @@ col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
+dados['detectado'] = dados['Detecção']>0
 
 # Converter a coluna 'Tipo de manancial' para string
 dados['Tipo de manancial'] = dados['Tipo de manancial'].astype(str)
@@ -37,6 +38,23 @@ dados['Tipo de manancial'] = dados['Tipo de manancial'].replace('nan', 'Sem info
 
 # Substituir os valores NaN por "Sem informação"
 #dados['Tipo de manancial'] = dados['Tipo de manancial'].fillna('Sem informação até o momento')
+
+#Arquivo com geojson municipios
+
+def load_geodata(url):
+    gdf = gpd.read_file(url)
+    return gdf
+
+municipios = load_geodata('https://raw.githubusercontent.com/andrejarenkow/geodata/main/municipios_rs_CRS/RS_Municipios_2021.json')
+# Remover acentos e converter para maiúsculo
+municipios['NM_MUN'] = municipios['NM_MUN'].apply(lambda x: unidecode(x).upper())
+
+#Juntando tudo no mesmo geodataframe
+dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
+
+# Número de coletas por município
+municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
+municipios_coletados.columns = ['Municipio', 'Coletas']
 
 with col10:
     filtro_container = st.container(border=True)
@@ -156,7 +174,20 @@ with col4:
             # Mostre o mapa no Streamlit
             st.plotly_chart(mapa_px)
 
-        #with mapa_coropletico:
+        with mapa_coropletico:
+            map_fig = px.choropleth_mapbox(dados_mapa_final, geojson=dados_mapa_final.geometry,
+                          locations=dados_mapa_final.index, color='Coletas',
+                          color_continuous_scale = 'Reds',
+                          center ={'lat':-30.452349861219243, 'lon':-53.55320517512141},
+                          zoom=5.5,
+                          mapbox_style="carto-darkmatter",
+                          hover_name='NM_MUN',
+                          width=800,
+                          height=700,
+                          template='plotly_dark',
+                          title = f'Coletas agrotóxicos')
+            map_fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+            st.plotly_chart(map_fig)
            
 
 
