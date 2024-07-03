@@ -104,26 +104,26 @@ st.markdown(centralizar_css, unsafe_allow_html=True)
 # Quantas amostras já foram coletadas
 with col6:
     total_amostras = len(dados)
-    with st.container():
-        st.markdown(f'<div class="stMetric"><h1>Total de Amostras Coletadas</h1><h2>{total_amostras}</h2></div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.metric("Total de Amostras Coletadas", total_amostras)
 
 # Quantas detecções
 with col7:
     total_deteccoes = dados_detec['Detecção'].sum()
-    with st.container():
-        st.markdown(f'<div class="stMetric"><h1>Total de Detecções</h1><h2>{total_deteccoes}</h2></div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.metric("Total de Detecções", total_deteccoes)
 
 # Quantos municípios com detecção
 with col8:
     municipios_com_detec = dados_detec['Municipio'].nunique()
-    with st.container():
-        st.markdown(f'<div class="stMetric"><h1>Municípios com Detecção</h1><h2>{municipios_com_detec}</h2></div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.metric("Municípios com Detecção", municipios_com_detec)
 
 # Quantos municípios houve coleta
 with col9:
     municipios_com_coleta = dados['Municipio'].nunique()
-    with st.container():
-        st.markdown(f'<div class="stMetric"><h1>Municípios com Coleta</h1><h2>{municipios_com_coleta}</h2></div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.metric("Municípios com Coleta", municipios_com_coleta)
 
 col5, col4 = st.columns([4, 4]) 
     
