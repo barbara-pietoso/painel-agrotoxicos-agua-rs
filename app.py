@@ -156,7 +156,7 @@ with col4:
             # Mostre o mapa no Streamlit
             st.plotly_chart(mapa_px)
 
-        with mapa_coropletico:
+        #with mapa_coropletico:
            
 
 
