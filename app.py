@@ -122,9 +122,6 @@ with col4:
         # Definindo o centro do mapa
         center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
         center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
-
-        # Criando a aplicação no Streamlit
-        st.title('Mapas no Streamlit')
         
         # Criar barra lateral para abas
         mapa_pontos, mapa_coropletico = st.tabs(['Mapa de Pontos', 'Mapa Cloroplético'])
@@ -160,25 +157,8 @@ with col4:
             st.plotly_chart(mapa_px)
 
         with mapa_coropletico:
-            st.header('Municípios com Detecção de Agrotóxicos no RS')
-            
-            # Criar o mapa cloroplético
-            mapa_cloropleto = px.choropleth_mapbox(
-            data_frame=dados_consolid,
-            geojson=geojson_data,  # Substitua pelo seu GeoJSON
-            locations='Municipio',  # Coluna no DataFrame que contém os nomes dos municípios
-            featureidkey="properties.name",  # Chave no GeoJSON que corresponde ao nome do município
-            color='Detecções_Contagem',
-            hover_name='Municipio',
-            title='Mapa Cloroplético de Detecção de Agrotóxicos no RS',
-            mapbox_style="carto-positron",
-            zoom=6,
-            center={"lat": center_lat, "lon": center_lon},
-            opacity=0.5
-        )
-    
-            # Mostrar o mapa cloroplético no Streamlit
-            st.plotly_chart(mapa_cloropleto)
+           
+
 
 with col5:        
 
