@@ -54,8 +54,11 @@ with col10:
     
         with coluna_captacao:
                 #Filtro de área
-                captacao_selectbox = sorted(dados['Tipo de manancial'].unique())
-                captacao_selectbox.insert(0, 'Todas')
+                # Lista de opções na ordem desejada
+                captacao_opcoes = ['Subterrânea', 'Superficial', 'Sem informação']
+
+                # Filtra a lista para incluir apenas as opções presentes nos dados e adiciona "Todas"
+                captacao_selectbox = ['Todas'] + [opcao for opcao in captacao_opcoes if opcao in dados['Tipo de manancial'].unique()]
                 Captação = st.selectbox("Selecione o tipo de captação", captacao_selectbox, index=0, placeholder="Nenhuma captação selecionada")
                 if Captação != 'Todas':
                     dados = dados[dados['Tipo de manancial']==Captação]
