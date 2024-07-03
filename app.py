@@ -3,7 +3,6 @@ import geopandas as gpd
 import plotly.express as px
 import streamlit as st
 import plotly.graph_objects as go
-import streamlit_js_eval
 import requests
 import folium
 from streamlit_folium import st_folium, folium_static
