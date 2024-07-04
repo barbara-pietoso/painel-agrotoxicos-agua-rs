@@ -147,6 +147,7 @@ with col4:
         # Definir layout baseado na aba selecionada
         
         with mapa_coropletico:
+            dados_mapa_final
             # Crie o mapa choropleth
             map_fig = px.choropleth_mapbox(
                 dados_mapa_final,
@@ -269,10 +270,9 @@ with col5:
     
         # Mostrar o gráfico
         st.plotly_chart(grafico_deteccoes_mensal)
-
+    
         soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=True).reset_index()
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
-
                         
         grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
                  x='Parametro', y='Quantidade', orientation='v', height=350, 
