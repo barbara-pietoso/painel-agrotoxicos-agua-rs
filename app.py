@@ -189,7 +189,7 @@ with col4:
                 hover_data="Municipio",  # Use a coluna correta
                 size="Detecções_Contagem",  # Use a coluna correta
                 height=800,
-                width=800,
+                width=700,
                 color_discrete_sequence=["#f2a744"],
                 size_max=15, #tamanho maximo dos pontos
                 mapbox_style="open-street-map"
