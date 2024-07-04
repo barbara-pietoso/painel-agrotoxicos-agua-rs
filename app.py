@@ -147,20 +147,6 @@ with col4:
         # Definir layout baseado na aba selecionada
         
         with mapa_coropletico:
-            map_fig = px.choropleth_mapbox(dados_mapa_final, geojson=dados_mapa_final.geometry,
-                          locations=dados_mapa_final.index, color='Coletas',
-                          color_continuous_scale = 'oranges',
-                          center ={'lat':-30.452349861219243, 'lon':-53.55320517512141},
-                          zoom=5.5,
-                          mapbox_style="open-street-map",
-                          hover_name='NM_MUN',
-                          width=800,
-                          height=700,
-                          #template='plotly_dark',
-                          title = f'Coletas agrotóxicos')
-            map_fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-            st.plotly_chart(map_fig)
-            
             # Crie o mapa choropleth
             map_fig = px.choropleth_mapbox(
                 dados_mapa_final,
