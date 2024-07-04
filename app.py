@@ -142,7 +142,7 @@ with col4:
         center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
         
         # Criar barra lateral para abas
-        mapa_pontos, mapa_coropletico = st.tabs(['Mapa de Pontos', 'Mapa Cloroplético'])
+        mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
         
         # Definir layout baseado na aba selecionada
         with mapa_pontos:
