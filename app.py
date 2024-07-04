@@ -230,7 +230,7 @@ with col5:
         bar_trace = go.Bar(
             x=detec_perc_mes_total.index,
             y=detec_perc_mes_total,
-            name='Total de Detecções',
+            name='Total de Amostras,
             yaxis='y2',
             marker_color='#01133b',
             opacity=0.3,
@@ -268,7 +268,7 @@ with col5:
                 #tickfont=dict(color='blue')
             ),
             yaxis2=dict(
-                title='Total de Detecções',
+                title='Total de Amostras',
                 #titlefont=dict(color='orange'),
                 #tickfont=dict(color='orange'),
                 overlaying='y',
