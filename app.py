@@ -148,46 +148,51 @@ with col4:
         
         with mapa_coropletico:
             # Defina a cor desejada para zero
-            zero_color = 'rgb(169, 169, 169)'  # Cor específica para zero, pode ser alterada
-            
-            # Crie uma coluna adicional que define a cor para cada valor
-            def get_color(value):
-                if value == 0:
-                    return zero_color
-                else:
-                    return value  # Para outros valores, mantenha-os como estão para usar a escala contínua
-            
-            dados_mapa_final['color'] = dados_mapa_final['Coletas'].apply(get_color)
-            
-            # Crie o mapa choropleth
-            map_fig = px.choropleth_mapbox(
-                dados_mapa_final,
-                geojson=dados_mapa_final.geometry,
-                locations=dados_mapa_final.index,
-                color='Coletas',  # Use a coluna original para a escala contínua
-                color_continuous_scale='oranges',
-                center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
-                zoom=5.5,
-                mapbox_style="open-street-map",
-                hover_name='NM_MUN',
-                width=800,
-                height=700,
-                title='Coletas agrotóxicos',
-                custom_data=['color']  # Adicione custom_data para armazenar a cor customizada
-            )
-            
-            # Atualize a cor dos traços para os valores zero
-            map_fig.update_traces(marker=dict(colorscale='oranges'), selector=dict(type='choroplethmapbox'))
-            
-            # Atualize as cores dos valores zero
-            for trace in map_fig.data:
-                trace.marker.colorscale.insert(0, [0, zero_color])
-                trace.marker.colorscale.insert(1, [1.0 / len(dados_mapa_final['Coletas'].unique()), 'oranges'])
-            
-            map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
-            st.plotly_chart(map_fig)
+                zero_color = 'rgb(169, 169, 169)'  # Cor específica para zero, pode ser alterada
+                
+                # Crie uma coluna adicional que define a cor para cada valor
+                def get_color(value):
+                    if value == 0:
+                        return zero_color
+                    else:
+                        return value
+                
+                dados_mapa_final['color'] = dados_mapa_final['Coletas'].apply(get_color)
+                
+                # Crie o mapa choropleth
+                map_fig = px.choropleth_mapbox(
+                    dados_mapa_final,
+                    geojson=dados_mapa_final.geometry,
+                    locations=dados_mapa_final.index,
+                    color='color',  # Use a nova coluna de cores
+                    color_continuous_scale='oranges',
+                    center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
+                    zoom=5.5,
+                    mapbox_style="open-street-map",
+                    hover_name='NM_MUN',
+                    width=800,
+                    height=700,
+                    title='Coletas agrotóxicos'
+                )
+                
+                # Ajuste a legenda para mostrar a cor específica de zero
+                map_fig.update_traces(marker=dict(line=dict(color=zero_color)))
+                
+                # Adicione uma anotação para explicar a cor do valor zero
+                map_fig.add_annotation(
+                    text="Valor zero",
+                    xref="paper", yref="paper",
+                    x=1, y=0,
+                    showarrow=False,
+                    font=dict(size=12, color=zero_color),
+                    align="right"
+                )
+                
+                map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
+                st.plotly_chart(map_fig)
+        
+        
         with mapa_pontos:
-           
             # Crie o mapa
             mapa_px = px.scatter_mapbox(
                 data_frame=dados_consolid,
