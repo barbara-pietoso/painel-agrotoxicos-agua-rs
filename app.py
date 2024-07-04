@@ -160,7 +160,8 @@ with col4:
                 hover_name='NM_MUN',
                 width=800,
                 height=700,
-                title='Coletas agrotóxicos'
+                title='Coletas agrotóxicos',
+                labels = {'Coletas'}
             )
             
             map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
