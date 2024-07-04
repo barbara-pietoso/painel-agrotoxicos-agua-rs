@@ -174,7 +174,7 @@ with col4:
                 title='Coletas agrotóxicos',
                )
             
-            map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
+            #map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
             st.plotly_chart(map_fig)
         
         
@@ -203,7 +203,7 @@ with col4:
                     zoom=5.7
                 )
             )
-            mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+            #mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             # Mostre o mapa no Streamlit
             st.plotly_chart(mapa_px)
            
