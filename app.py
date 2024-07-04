@@ -160,7 +160,7 @@ with col4:
                 geojson=dados_mapa_final.geometry,
                 locations=dados_mapa_final.index,
                 color='Intervalo Coletas', 
-                color_discrete_map:{'0':'red',
+                color_discrete_map={'0':'red',
                                    '1 a 2':'#FBFFDE',
                                     '3 a 5':'#9CDBBB',
                                     '6 a 8':'#005E9C',
