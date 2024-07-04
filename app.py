@@ -158,7 +158,6 @@ with col4:
                 zoom=5.5,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
-                hover_data={'Coletas': True, 'index': False},
                 width=800,
                 height=700,
                 title='Coletas agrotóxicos',
