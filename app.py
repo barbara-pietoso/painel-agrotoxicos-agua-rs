@@ -230,7 +230,7 @@ with col5:
         bar_trace = go.Bar(
             x=detec_perc_mes_total.index,
             y=detec_perc_mes_total,
-            name='Total de Amostras,
+            name='Total de Amostras',
             yaxis='y2',
             marker_color='#01133b',
             opacity=0.3,
