@@ -158,11 +158,11 @@ with col4:
                 zoom=5.5,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
+                hover_data={'Coletas': True, 'index': False},
                 width=800,
                 height=700,
                 title='Coletas agrotóxicos',
-                labels = {'Coletas'}
-            )
+               )
             
             map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
             st.plotly_chart(map_fig)
