@@ -152,7 +152,7 @@ with col4:
                 dados_mapa_final,
                 geojson=dados_mapa_final.geometry,
                 locations=dados_mapa_final.index,
-                color='color',  # Use a nova coluna de cores
+                color='Coletas',  # Use a nova coluna de cores
                 center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
                 zoom=5.5,
                 mapbox_style="open-street-map",
