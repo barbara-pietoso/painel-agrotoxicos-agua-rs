@@ -274,7 +274,7 @@ with col5:
                 overlaying='y',
                 side='right'
             ),
-            height=400,
+            height=300,
             legend=dict(x=0.4, y=1.2, bgcolor='rgba(255, 255, 255, 0)')
         )
 
