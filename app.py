@@ -171,10 +171,10 @@ with col4:
                 hover_name='NM_MUN',
                 width=800,
                 height=700,
-                title='Coletas agrotóxicos',
+                #title='Coletas agrotóxicos',
                )
             
-            #map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
+            map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
             st.plotly_chart(map_fig)
         
         
@@ -184,7 +184,7 @@ with col4:
                 data_frame=dados_consolid,
                 lat="Latitude",
                 lon="Longitude",
-                title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
+                #title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
                 zoom=6,
                 hover_data="Municipio",  # Use a coluna correta
                 size="Detecções_Contagem",  # Use a coluna correta
@@ -197,13 +197,13 @@ with col4:
             
             # Adicione uma legenda
             mapa_px.update_layout(
-                legend_title="Detecção de Agrotóxicos no RS",
+                #legend_title="Detecção de Agrotóxicos no RS",
                 mapbox=dict(
                     center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
                     zoom=5.7
                 )
             )
-            #mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+            mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             # Mostre o mapa no Streamlit
             st.plotly_chart(mapa_px)
            
