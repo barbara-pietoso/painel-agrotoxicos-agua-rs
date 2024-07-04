@@ -147,19 +147,27 @@ with col4:
         # Definir layout baseado na aba selecionada
         
         with mapa_coropletico:
-            # Crie uma coluna adicional que indica se o valor é zero ou não
-            dados_mapa_final['is_zero'] = dados_mapa_final['Coletas'] == 0
-            
             # Defina a cor desejada para zero
             zero_color = 'rgb(169, 169, 169)'  # Cor específica para zero, pode ser alterada
+            
+            # Crie uma coluna adicional que define a cor para cada valor
+            def get_color(value):
+                if value == 0:
+                    return zero_color
+                else:
+                    # Mapeie a cor contínua para os demais valores
+                    norm_value = (value - dados_mapa_final['Coletas'].min()) / (dados_mapa_final['Coletas'].max() - dados_mapa_final['Coletas'].min())
+                    color_scale = px.colors.sequential.Oranges
+                    return color_scale[int(norm_value * (len(color_scale) - 1))]
+            
+            dados_mapa_final['color'] = dados_mapa_final['Coletas'].apply(get_color)
             
             # Crie o mapa choropleth
             map_fig = px.choropleth_mapbox(
                 dados_mapa_final,
                 geojson=dados_mapa_final.geometry,
                 locations=dados_mapa_final.index,
-                color='Coletas',
-                color_continuous_scale='oranges',
+                color='color',  # Use a nova coluna de cores
                 center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
                 zoom=5.5,
                 mapbox_style="open-street-map",
@@ -168,15 +176,6 @@ with col4:
                 height=700,
                 title='Coletas agrotóxicos'
             )
-            
-            # Atualize as cores para zeros
-            for trace in map_fig.data:
-                # Encontre os índices onde 'Coletas' é zero
-                zero_indices = dados_mapa_final[dados_mapa_final['Coletas'] == 0].index
-            
-                # Atualize as cores desses índices para zero_color
-                for idx in zero_indices:
-                    trace.marker.color[idx] = zero_color
             
             map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
             st.plotly_chart(map_fig)
