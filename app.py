@@ -147,14 +147,20 @@ with col4:
         # Definir layout baseado na aba selecionada
         
         with mapa_coropletico:
-            dados_mapa_final
+            # Defina os intervalos e os rótulos
+            bins = [0, 1, 3, 6, 9, float('inf')]
+            labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
+            
+            # Crie a nova coluna de intervalos
+            dados_mapa_final['Intervalo Coletas'] = pd.cut(dados_mapa_final['Coletas'], bins=bins, labels=labels, right=False)
+
             # Crie o mapa choropleth
             map_fig = px.choropleth_mapbox(
                 dados_mapa_final,
                 geojson=dados_mapa_final.geometry,
                 locations=dados_mapa_final.index,
-                color='Coletas', 
-                color_continuous_scale = 'oranges',
+                color='Intervalo Coletas', 
+                #color_continuous_scale = 'oranges',
                 center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
                 zoom=5.5,
                 mapbox_style="open-street-map",
