@@ -350,5 +350,5 @@ grafico_mun_detec.update_layout(
     )
 )
 grafico_mun_detec.data[0].textinfo = 'label+text+value'
-
+grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
