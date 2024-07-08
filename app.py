@@ -69,9 +69,11 @@ with col10:
 		    lista_crs_selectbox.insert(0,'Todas')
 		    CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
 		    lista_munipios_crs = dados_municipios['Município']
+		    zoom=5.5
 		    if CRS != 'Todas':
 			    dados = dados[dados['CRS']==CRS]
 			    lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
+			    zoom=8
 		
     
 	    with coluna_captacao:
@@ -154,6 +156,15 @@ with col4:
         # Definindo o centro do mapa
 	center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
 	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+
+	# pontos máximos e mínimos
+	latitude_max = municipios['geometry'].to_crs(31983).centroid.y.max()
+	latitude_min = municipios['geometry'].to_crs(31983).centroid.y.min()
+	longitude_max = municipios['geometry'].to_crs(31983).centroid.x.max()
+	longitude_min = municipios['geometry'].to_crs(31983).centroid.x.min()
+	
+	center_lat = (latitude_max + latitude_min)/2
+	center_lon = (longitude_max + longitude_min)/2
         
         # Criar barra lateral para abas
 	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
@@ -180,7 +191,7 @@ with col4:
                                     '6 a 8':'#e8bf56',
                                     'mais de 8':'#ffe8a2'},
                 center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
-                zoom=5.5,
+                zoom=zoom,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
                 width=800,
