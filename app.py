@@ -319,20 +319,20 @@ with col5:
         st.plotly_chart(grafico_top_agrotoxico)
 	
 with col5:
-	#Gráfico 10 municipios com mais deteccao
-	municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
+	# Agrupar os dados por Município e CRS e somar as detecções
+	municipios_detec = dados.groupby(['Municipio', 'CRS'])['Detecção'].sum().reset_index()
 	
-	# Sort the data by the number of detections in descending order.
-	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=False)
-		
-	# Filter out municipalities with zero detections.
-	municipios_com_detecção = municipios_com_detecção[municipios_com_detecção['Detecção'] > 0]
-		
-	# Select the top 30 municipalities with the most detections.
-	municipios_top_10 = municipios_com_detecção.head(20)
-		
-	# Create a bar chart using plotly express.
-	grafico_top_10_mun = px.bar(municipios_top_10, y='Municipio', x='Detecção', orientation='h', 
-		             labels={'Municipio': 'Município', 'Detecção': 'Número de Detecções'},
-		             title='Municípios com mais detecção de agrotóxicos', color_discrete_sequence=['#f2a744'])
-	st.plotly_chart(grafico_top_10_mun)
+	# Ordenar os dados pelo número de detecções em ordem decrescente
+	municipios_detec = municipios_detec.sort_values(by='Detecção', ascending=False)
+	
+	# Filtrar os municípios com detecções maiores que zero
+	municipios_com_detecção = municipios_detec[municipios_detec['Detecção'] > 0]
+	
+	# Selecionar os 30 primeiros municípios com mais detecções
+	#municipios_top_30 = municipios_com_detecção.nlargest(30, 'Detecção')
+	
+	# Criar um gráfico de árvore (treemap) usando Plotly Express, agrupando por CRS
+	fig = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção',
+	                 labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections', 'CRS': 'CRS'},
+	                 title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
+	fig.show()
