@@ -8,6 +8,7 @@ import folium
 from streamlit_folium import st_folium, folium_static
 import altair as alt
 from unidecode import unidecode
+import textwrap
 
 # Configurações da página
 st.set_page_config(
