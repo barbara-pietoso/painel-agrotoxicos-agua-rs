@@ -311,7 +311,7 @@ with col5:
         soma_agrotoxicos = dados_filtrados['Parametros detectados'].str.get_dummies(sep=',').sum().sort_values(ascending=True).reset_index()
         soma_agrotoxicos.columns = ['Parametro', 'Quantidade']
                         
-        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade'),
+        grafico_top_agrotoxico = px.bar(soma_agrotoxicos.sort_values(by='Quantidade', ascending=False),
                  x='Parametro', y='Quantidade', orientation='v', height=350, 
                  text='Quantidade', title = 'Quantidade de agrotóxicos encontrada', color_discrete_sequence=['#f2a744'])  # Azul muito escuro
                 
@@ -334,5 +334,5 @@ with col5:
 	# Create a bar chart using plotly express.
 	grafico_top_10_mun = px.bar(municipios_top_10, x='Municipio', y='Detecção', 
 		             labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections'},
-		             title='Municípios com mais detecção de agrotóxicos')
+		             title='Municípios com mais detecção de agrotóxicos', color_discrete_sequence=['#f2a744'])
 	st.plotly_chart(grafico_top_10_mun)
