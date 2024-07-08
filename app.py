@@ -158,10 +158,10 @@ with col4:
 	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
 
 	# pontos máximos e mínimos
-	latitude_max = dados_mapa_final['geometry'].to_crs(31983).centroid.y.max()
-	latitude_min = dados_mapa_final['geometry'].to_crs(31983).centroid.y.min()
-	longitude_max = dados_mapa_final['geometry'].to_crs(31983).centroid.x.max()
-	longitude_min = dados_mapa_final['geometry'].to_crs(31983).centroid.x.min()
+	latitude_max = dados_mapa_final['geometry'].centroid.y.max()
+	latitude_min = dados_mapa_final['geometry'].centroid.y.min()
+	longitude_max = dados_mapa_final['geometry'].centroid.x.max()
+	longitude_min = dados_mapa_final['geometry'].centroid.x.min()
 	
 	center_lat = (latitude_max + latitude_min)/2
 	center_lon = (longitude_max + longitude_min)/2
@@ -190,7 +190,7 @@ with col4:
                                     '3 a 5':'#e4844a',
                                     '6 a 8':'#e8bf56',
                                     'mais de 8':'#ffe8a2'},
-                #center={'lat':center_lat, 'lon': center_lon},
+                center={'lat':center_lat, 'lon': center_lon},
                 zoom=zoom,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
