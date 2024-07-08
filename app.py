@@ -323,7 +323,7 @@ with col5:
 	municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
 	
 	# Sort the data by the number of detections in descending order.
-	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=True)
+	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=False)
 		
 	# Filter out municipalities with zero detections.
 	municipios_com_detecção = municipios_com_detecção[municipios_com_detecção['Detecção'] > 0]
@@ -333,6 +333,6 @@ with col5:
 		
 	# Create a bar chart using plotly express.
 	grafico_top_10_mun = px.bar(municipios_top_10, y='Municipio', x='Detecção', orientation='h', 
-		             labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections'},
+		             labels={'Municipio': 'Município', 'Detecção': 'Número de Coletas'},
 		             title='Municípios com mais detecção de agrotóxicos', color_discrete_sequence=['#f2a744'])
 	st.plotly_chart(grafico_top_10_mun)
