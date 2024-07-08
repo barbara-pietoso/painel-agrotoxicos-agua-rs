@@ -164,7 +164,7 @@ with col4:
                                    '1 a 2':'#d45a3c', 
                                     '3 a 5':'#e4844a',
                                     '6 a 8':'#e8bf56',
-                                    'mais de 8':'#e8d826'},
+                                    'mais de 8':'#ffe8a2'},
                 center={'lat': -30.452349861219243, 'lon': -53.55320517512141},
                 zoom=5.5,
                 mapbox_style="open-street-map",
