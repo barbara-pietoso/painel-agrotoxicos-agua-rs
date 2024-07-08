@@ -318,21 +318,21 @@ with col5:
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
 	
-with col5:
+
 	# Agrupar os dados por Município e CRS e somar as detecções
-	municipios_detec = dados.groupby(['Municipio', 'CRS'])['Detecção'].sum().reset_index()
+municipios_detec = dados.groupby(['Municipio', 'CRS'])['Detecção'].sum().reset_index()
 	
 	# Ordenar os dados pelo número de detecções em ordem decrescente
-	municipios_detec = municipios_detec.sort_values(by='Detecção', ascending=False)
+municipios_detec = municipios_detec.sort_values(by='Detecção', ascending=False)
 	
 	# Filtrar os municípios com detecções maiores que zero
-	municipios_com_detecção = municipios_detec[municipios_detec['Detecção'] > 0]
+municipios_com_detecção = municipios_detec[municipios_detec['Detecção'] > 0]
 	
 	# Selecionar os 30 primeiros municípios com mais detecções
 	#municipios_top_30 = municipios_com_detecção.nlargest(30, 'Detecção')
 	
 	# Criar um gráfico de árvore (treemap) usando Plotly Express, agrupando por CRS
-	municipios_com_detecção_grafico = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção',
+municipios_com_detecção_grafico = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção',
 	                 labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections', 'CRS': 'CRS'},
 	                 title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
-	st.plotly_chart(municipios_com_detecção_grafico)
+st.plotly_chart(municipios_com_detecção_grafico)
