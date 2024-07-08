@@ -26,6 +26,12 @@ col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 # Adicionando métricas
 col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 
+# Carregar dados de referencias
+# Planilha com referencias de municipios
+dados_municipios = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/master/Munic%C3%ADpios%20RS%20IBGE6%20Popula%C3%A7%C3%A3o%20CRS%20Regional%20-%20P%C3%A1gina1.csv')
+dados_municipios['Município'] = dados_municipios['Município'].apply(lambda x: unidecode(x).upper())
+dados_municipios['Município'] = dados_municipios['Município'].replace("SANT'ANA DO LIVRAMENTO", 'SANTANA DO LIVRAMENTO', regex=True)
+
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 dados['detectado'] = dados['Detecção']>0
@@ -66,6 +72,7 @@ with col10:
                 CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
                 if CRS != 'Todas':
                     dados = dados[dados['CRS']==CRS]
+		    lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
 		
     
         with coluna_captacao:
@@ -134,6 +141,9 @@ with col4:
 	# Número de coletas por município
 	municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
 	municipios_coletados.columns = ['Municipio', 'Coletas']
+
+	# Filtrando o geodataframe
+	municipios = municipios[municipios['NM_MUN'].isin(lista_munipios_crs)]
 	
 	#Juntando tudo no mesmo geodataframe
 	dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
