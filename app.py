@@ -137,9 +137,10 @@ with col4:
 	
 	#Juntando tudo no mesmo geodataframe
 	dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
+	
         # Configurar o token do Mapbox
-        token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
-        px.set_mapbox_access_token(token)
+	token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
+	px.set_mapbox_access_token(token)
 
         # Definindo o centro do mapa
         center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
