@@ -331,7 +331,7 @@ with col5:
 	municipios_top_10 = municipios_com_detecção.head(10)
 	
 	# Create a bar chart using plotly express.
-	fig = px.bar(municipios_top_10, x='Municipio', y='Detecção', 
+	grafico_top_10_mun = px.bar(municipios_top_10, x='Municipio', y='Detecção', 
 	             labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections'},
 	             title='Municípios com mais detecção de agrotóxicos')
-	fig.show()
+	st.plotly_chart(grafico_top_10_mun)
