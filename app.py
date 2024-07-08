@@ -320,26 +320,33 @@ with col5:
         st.plotly_chart(grafico_top_agrotoxico)
 	
 
-	# Agrupar os dados por Município e CRS e somar as detecções
+# Função para adicionar quebras de linha aos nomes longos
+def wrap_labels(label, width=10):
+    return '<br>'.join(textwrap.wrap(label, width))
+
+# Agrupar os dados por Município e CRS e somar as detecções
 municipios_detec = dados.groupby(['Municipio', 'CRS'])['Detecção'].sum().reset_index()
-	
-	# Ordenar os dados pelo número de detecções em ordem decrescente
+
+# Ordenar os dados pelo número de detecções em ordem decrescente
 municipios_detec = municipios_detec.sort_values(by='Detecção', ascending=False)
-	
-	# Filtrar os municípios com detecções maiores que zero
+
+# Filtrar os municípios com detecções maiores que zero
 municipios_com_detecção = municipios_detec[municipios_detec['Detecção'] > 0]
-	
-	# Selecionar os 30 primeiros municípios com mais detecções
-	#municipios_top_30 = municipios_com_detecção.nlargest(30, 'Detecção')
-	
-	# Criar um gráfico de árvore (treemap) usando Plotly Express, agrupando por CRS
-municipios_com_detecção_grafico = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção', height = 800,
-	                 labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections', 'CRS': 'CRS'},
-	                 title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
-municipios_com_detecção_grafico.update_layout(
+
+# Aplicar a função de quebra de linha aos nomes dos municípios
+municipios_com_detecção['Municipio'] = municipios_com_detecção['Municipio'].apply(wrap_labels)
+
+# Criar um gráfico de árvore (treemap) usando Plotly Express, agrupando por CRS
+grafico_mun_detec = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção',
+                 labels={'Municipio': 'Município', 'Detecção': 'Número de Detecções', 'CRS': 'CRS'},
+                 title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
+
+# Atualizar o layout para alterar o tamanho da fonte
+grafico_mun_detec.update_layout(
     title_font_size=20,  # Tamanho da fonte do título
     font=dict(
         size=14  # Tamanho da fonte geral
     )
 )
-st.plotly_chart(municipios_com_detecção_grafico)
+
+st.plotly_chart(grafico_mun_detec)
