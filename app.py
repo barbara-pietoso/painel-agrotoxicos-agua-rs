@@ -335,4 +335,10 @@ municipios_com_detecção = municipios_detec[municipios_detec['Detecção'] > 0]
 municipios_com_detecção_grafico = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção', height = 800,
 	                 labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections', 'CRS': 'CRS'},
 	                 title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
+municipios_com_detecção_grafico.update_layout(
+    title_font_size=20,  # Tamanho da fonte do título
+    font=dict(
+        size=14  # Tamanho da fonte geral
+    )
+)
 st.plotly_chart(municipios_com_detecção_grafico)
