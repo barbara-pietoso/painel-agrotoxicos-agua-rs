@@ -161,7 +161,7 @@ with col4:
                 locations=dados_mapa_final.index,
                 color='Intervalo Coletas', 
                 color_discrete_map={'0':'#330708', 
-                                   '1 a 2':'#e84624', 
+                                   '1 a 2':'#d45a3c', 
                                     '3 a 5':'#e87624',
                                     '6 a 8':'#e8a726',
                                     'mais de 8':'#e8d826'},
