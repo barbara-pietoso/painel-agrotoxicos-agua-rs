@@ -338,7 +338,7 @@ municipios_com_detecção['Municipio'] = municipios_com_detecção['Municipio'].
 
 # Criar um gráfico de árvore (treemap) usando Plotly Express, agrupando por CRS
 grafico_mun_detec = px.treemap(municipios_com_detecção, path=['CRS', 'Municipio'], values='Detecção', height = 700, 
-			       hover_name = 'Municipio',
+			       hover_name = 'Municipio', hover_data={'Municipio': True, 'Detecção': True, 'CRS': True},  # Especificar quais dados incluir no hover
                 	       color_discrete_sequence=px.colors.qualitative.Set2, labels={'labels': 'Município', 'Detecção': 'Número de Detecções', 'parent': 'CRS', 'id':'CRS e Município'},
                  	       title='Municípios com mais detecção de agrotóxicos agrupados por CRS')
 
