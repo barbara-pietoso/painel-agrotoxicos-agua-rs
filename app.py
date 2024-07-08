@@ -65,15 +65,15 @@ with col10:
 	    coluna_crs, coluna_captacao = st.columns([1,1])
 	    with coluna_crs:
 		#Filtro de CRS
-		lista_crs_selectbox = sorted(dados['CRS'].unique())
-		lista_crs_selectbox.insert(0,'Todas')
-		CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
-		if CRS != 'Todas':
-			dados = dados[dados['CRS']==CRS]
-			lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
+		    lista_crs_selectbox = sorted(dados['CRS'].unique())
+		    lista_crs_selectbox.insert(0,'Todas')
+		    CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
+		    if CRS != 'Todas':
+			    dados = dados[dados['CRS']==CRS]
+			    lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
 		
     
-        with coluna_captacao:
+	    with coluna_captacao:
                 #Filtro de área
                 # Lista de opções na ordem desejada
                 captacao_opcoes = ['Subterrânea', 'Superficial', 'Sem informação até o momento']
