@@ -191,7 +191,7 @@ with col4:
                                     '6 a 8':'#e8bf56',
                                     'mais de 8':'#ffe8a2'},
                 center={'lat':center_lat, 'lon': center_lon},
-		category_order = {'Intervalo Coletas':['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
+		category_orders = {'Intervalo Coletas':['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
                 zoom=zoom,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
