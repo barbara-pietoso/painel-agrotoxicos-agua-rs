@@ -318,20 +318,20 @@ with col5:
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
 
-#Gráfico 10 municipios com mais deteccao
-municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
-
-# Sort the data by the number of detections in descending order.
-municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=False)
+	#Gráfico 10 municipios com mais deteccao
+	municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
 	
-# Filter out municipalities with zero detections.
-municipios_com_detecção = municipios_com_detecção[municipios_com_detecção['Detecção'] > 0]
-	
-# Select the top 30 municipalities with the most detections.
-municipios_top_10 = municipios_com_detecção.head(10)
-	
-# Create a bar chart using plotly express.
-grafico_top_10_mun = px.bar(municipios_top_10, x='Municipio', y='Detecção', 
-	             labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections'},
-	             title='Municípios com mais detecção de agrotóxicos')
-st.plotly_chart(grafico_top_10_mun)
+	# Sort the data by the number of detections in descending order.
+	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=False)
+		
+	# Filter out municipalities with zero detections.
+	municipios_com_detecção = municipios_com_detecção[municipios_com_detecção['Detecção'] > 0]
+		
+	# Select the top 30 municipalities with the most detections.
+	municipios_top_10 = municipios_com_detecção.head(10)
+		
+	# Create a bar chart using plotly express.
+	grafico_top_10_mun = px.bar(municipios_top_10, x='Municipio', y='Detecção', 
+		             labels={'Municipio': 'Municipality', 'Detecção': 'Number of Detections'},
+		             title='Municípios com mais detecção de agrotóxicos')
+	st.plotly_chart(grafico_top_10_mun)
