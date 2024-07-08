@@ -7,4 +7,3 @@ streamlit-folium
 openpyxl  
 altair
 unidecode
-textwrap
