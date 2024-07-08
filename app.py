@@ -73,7 +73,7 @@ with col10:
 		    if CRS != 'Todas':
 			    dados = dados[dados['CRS']==CRS]
 			    lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
-			    zoom=8
+			    zoom=7
 		
     
 	    with coluna_captacao:
