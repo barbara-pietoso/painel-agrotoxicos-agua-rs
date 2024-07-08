@@ -66,11 +66,11 @@ with col10:
         
         
         with coluna_crs:
-                #Filtro de CRS
+		#Filtro de CRS
                 lista_crs_selectbox = sorted(dados['CRS'].unique())
                 lista_crs_selectbox.insert(0,'Todas')
                 CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
-                if CRS != 'Todas':
+		if CRS != 'Todas':
 			dados = dados[dados['CRS']==CRS]
 			lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
 		
