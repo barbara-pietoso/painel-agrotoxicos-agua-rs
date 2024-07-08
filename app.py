@@ -350,9 +350,11 @@ grafico_mun_detec.update_layout(
     )
 )
 for data in grafico_mun_detec.data:
-    #data.textinfo = 'label+text+value'
+    data.textinfo = 'label+text+value'
     custom_text = "Custom Info"  # Texto personalizado que você deseja adicionar
     data.customdata = [custom_text] * len(data.labels)  # Adiciona o texto personalizado para cada item
     data.hovertemplate = '<b>%{label}</b><br>Detecção: %{value}<br>'
+    data.texttemplate = '<b>%{label}</b><br>Detecção: %{value}<br>'
+    
 #grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
