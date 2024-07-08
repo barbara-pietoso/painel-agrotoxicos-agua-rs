@@ -29,6 +29,8 @@ col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 dados['detectado'] = dados['Detecção']>0
+	
+dados['Municipio'] = dados['Municipio'].replace("SANT'ANA DO LIVRAMENTO", 'SANTANA DO LIVRAMENTO', regex=True)
 
 # Converter a coluna 'Tipo de manancial' para string
 dados['Tipo de manancial'] = dados['Tipo de manancial'].astype(str)
