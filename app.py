@@ -62,7 +62,7 @@ municipios['NM_MUN'] = municipios['NM_MUN'].apply(lambda x: unidecode(x).upper()
 with col10:
     filtro_container = st.container(border=True)
     with filtro_container:
-        coluna_crs, coluna_captacao = st.columns([1,1])
+	    coluna_crs, coluna_captacao = st.columns([1,1])
 	    with coluna_crs:
 		#Filtro de CRS
 		lista_crs_selectbox = sorted(dados['CRS'].unique())
