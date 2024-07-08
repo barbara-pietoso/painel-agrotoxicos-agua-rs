@@ -183,7 +183,7 @@ with col4:
             st.plotly_chart(map_fig)
         
         
-        with mapa_pontos:
+	with mapa_pontos:
             # Crie o mapa
             mapa_px = px.scatter_mapbox(
                 data_frame=dados_consolid,
