@@ -323,7 +323,7 @@ with col5:
 	municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
 	
 	# Sort the data by the number of detections in descending order.
-	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=False)
+	municipios_com_detecção = municipios_com_detecção.sort_values(by='Detecção', ascending=True)
 		
 	# Filter out municipalities with zero detections.
 	municipios_com_detecção = municipios_com_detecção[municipios_com_detecção['Detecção'] > 0]
