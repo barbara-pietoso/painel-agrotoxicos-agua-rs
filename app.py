@@ -143,11 +143,11 @@ with col4:
 	px.set_mapbox_access_token(token)
 
         # Definindo o centro do mapa
-        center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
-        center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+	center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
+	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
         
         # Criar barra lateral para abas
-        mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
+	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
         
         # Definir layout baseado na aba selecionada
         
