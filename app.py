@@ -349,4 +349,4 @@ grafico_mun_detec.update_layout(
     )
 )
 
-st.plotly_chart(grafico_mun_detec, theme="None")
+st.plotly_chart(grafico_mun_detec, theme = None)
