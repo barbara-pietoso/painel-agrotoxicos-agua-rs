@@ -151,7 +151,7 @@ with col4:
         
         # Definir layout baseado na aba selecionada
         
-        with mapa_coropletico:
+	with mapa_coropletico:
             # Defina os intervalos e os rótulos
             bins = [0, 1, 3, 6, 9, float('inf')]
             labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
