@@ -349,5 +349,6 @@ grafico_mun_detec.update_layout(
         size=14  # Tamanho da fonte geral
     )
 )
+grafico_mun_detec.data[0].textinfo = 'label+text+value+current path'
 
 st.plotly_chart(grafico_mun_detec, theme = None)
