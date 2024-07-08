@@ -356,5 +356,5 @@ for data in grafico_mun_detec.data:
     data.hovertemplate = '<b>%{label}</b><br>Detecção: %{value}<br>'
     data.texttemplate = '<b>%{label}</b><br>Detecção: %{value}<br>'
     
-grafico_mun_detec.layout.hovermode = False
+#grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
