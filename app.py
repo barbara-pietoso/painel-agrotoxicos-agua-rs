@@ -158,10 +158,10 @@ with col4:
 	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
 
 	# pontos máximos e mínimos
-	latitude_max = municipios['geometry'].to_crs(31983).centroid.y.max()
-	latitude_min = municipios['geometry'].to_crs(31983).centroid.y.min()
-	longitude_max = municipios['geometry'].to_crs(31983).centroid.x.max()
-	longitude_min = municipios['geometry'].to_crs(31983).centroid.x.min()
+	latitude_max = dados_mapa_final['geometry'].to_crs(31983).centroid.y.max()
+	latitude_min = dados_mapa_final['geometry'].to_crs(31983).centroid.y.min()
+	longitude_max = dados_mapa_final['geometry'].to_crs(31983).centroid.x.max()
+	longitude_min = dados_mapa_final['geometry'].to_crs(31983).centroid.x.min()
 	
 	center_lat = (latitude_max + latitude_min)/2
 	center_lon = (longitude_max + longitude_min)/2
