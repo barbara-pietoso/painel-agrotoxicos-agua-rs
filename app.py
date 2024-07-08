@@ -190,7 +190,7 @@ with col4:
                                     '3 a 5':'#e4844a',
                                     '6 a 8':'#e8bf56',
                                     'mais de 8':'#ffe8a2'},
-                center={'lat':center_lat, 'lon': center_lon},
+                #center={'lat':center_lat, 'lon': center_lon},
                 zoom=zoom,
                 mapbox_style="open-street-map",
                 hover_name='NM_MUN',
