@@ -79,12 +79,6 @@ with col10:
                 if Captação != 'Todas':
                     dados = dados[dados['Tipo de manancial']==Captação]
 			
-    		# Número de coletas por município
-		municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
-		municipios_coletados.columns = ['Municipio', 'Coletas']
-
-		#Juntando tudo no mesmo geodataframe
-		dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
                     
                 # Filtrando apenas com detecção
                 dados_detec = dados[dados['Detecção']>0].reset_index(drop=True)
@@ -137,6 +131,12 @@ with col9:
 col5, col4 = st.columns([4, 4]) 
     
 with col4:  
+	# Número de coletas por município
+	municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
+	municipios_coletados.columns = ['Municipio', 'Coletas']
+	
+	#Juntando tudo no mesmo geodataframe
+	dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
         # Configurar o token do Mapbox
         token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
         px.set_mapbox_access_token(token)
