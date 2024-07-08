@@ -317,7 +317,8 @@ with col5:
                 
         # Mostre o mapa no Streamlit
         st.plotly_chart(grafico_top_agrotoxico)
-
+	
+with col5:
 	#Gráfico 10 municipios com mais deteccao
 	municipios_com_detecção = dados.groupby('Municipio')['Detecção'].sum().reset_index() # Fixed typo in column name: 'Detecçao' -> 'Detecção'
 	
