@@ -195,7 +195,7 @@ with col4:
 	# Criar barra lateral para abas
 	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
 
-	with mapa_coropletico:
+	with mapa_pontos:
 	    # Defina os intervalos e os rótulos
 	    bins = [0, 1, 3, 6, 9, float('inf')]
 	    labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
@@ -226,7 +226,7 @@ with col4:
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    st.plotly_chart(map_fig)
 	
-	with mapa_coropletico:
+	with mapa_pontos:
 	    # Crie o mapa
 	    mapa_px = px.scatter_mapbox(
 	        data_frame=dados_consolid,
