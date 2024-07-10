@@ -234,7 +234,7 @@ with col4:
 	    map_fig.update_layout(title_text='Swiss Canton Choroplethmapbox with Boundary Lines',
                   mapbox_layers = [dict(sourcetype = 'geojson',
                                         source = geojson_url,
-                                        color='red',
+                                        color='grey',
                                         type = 'line',   
                                         line=dict(width=1)
                                    )]);
