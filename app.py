@@ -230,8 +230,8 @@ with col4:
 	    # Crie o mapa
 	    mapa_px = px.scatter_mapbox(
 	        data_frame=dados_consolid,
-	        #lat="Latitude",
-	        #lon="Longitude",
+	        lat="Latitude",
+	        lon="Longitude",
 		center={'lat': center_lat, 'lon': center_lon},
 	        zoom=zoom_ini,
 	        hover_data=["Municipio"],  # Use a coluna correta
