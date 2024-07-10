@@ -222,7 +222,7 @@ with col4:
 	                            'mais de 8': '#ffe8a2'},
 	        center={'lat': center_lat, 'lon': center_lon},
 	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
-	        zoom=7,  # Defina seu nível de zoom inicial
+	        zoom=zoom_ini,  # Defina seu nível de zoom inicial
 	        mapbox_style="open-street-map",
 	        hover_name='NM_MUN',
 	        width=800,
@@ -239,7 +239,7 @@ with col4:
 	        lat="Latitude",
 	        lon="Longitude",
 	        center={'lat': center_lat, 'lon': center_lon},
-	        zoom=7,  # Defina seu nível de zoom inicial
+	        zoom=zoom_ini,  # Defina seu nível de zoom inicial
 	        hover_data=["Municipio"],  # Use a coluna correta
 	        size="Detecções_Contagem",  # Use a coluna correta
 	        width=800,
@@ -255,10 +255,10 @@ with col4:
 	            layers=[{
 	                'source': geojson_url,
 	                'type': 'line',
-	                'color': 'blue'
+	                'color': 'grey'
 	            }],
 	            center={"lat": center_lat, "lon": center_lon},
-	            zoom=7
+	            zoom=zoom_ini
 	        )
 	    )
 	
