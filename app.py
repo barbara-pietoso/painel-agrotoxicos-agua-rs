@@ -212,7 +212,7 @@ with col4:
 	    # Crie o mapa choropleth
 	    map_fig = px.choropleth_mapbox(
 	        dados_mapa_final,
-	        geojson=geojson_url,
+	        geojson=dados_mapa_final.geometry,
 	        locations=dados_mapa_final.index,
 	        color='Intervalo Coletas', 
 	        color_discrete_map={'0': '#330708', 
