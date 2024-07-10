@@ -8,3 +8,4 @@ openpyxl
 altair
 unidecode
 extra-streamlit-components
+streamlit-echarts
