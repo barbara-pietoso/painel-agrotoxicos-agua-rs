@@ -235,7 +235,7 @@ with col4:
                                         source = geojson_url,
                                         color='#303030',
                                         type = 'line',   
-                                        line=dict(width=1)
+                                        line=dict(width=2.5)
                                    )]);
 	    st.plotly_chart(map_fig)
 	
