@@ -246,7 +246,7 @@ with col4:
 	    mapa_px.update_layout(
 	        mapbox=dict(
 	            center={"lat": center_lat, "lon": center_lon},
-	            zoom=7
+	            zoom=zoom_ini
 	        )
 	    )
 	    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
