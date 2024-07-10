@@ -229,14 +229,14 @@ with col4:
 	        height=700
 	    )
             # Diminuir a grossura da linha
-	    map_fig.update_traces(marker_line_width=0.5)  # Ajuste o valor conforme desejado	
+	    map_fig.update_traces(marker_line_width=0.4)  # Ajuste o valor conforme desejado	
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    map_fig.update_layout(title_text='Swiss Canton Choroplethmapbox with Boundary Lines',
                   mapbox_layers = [dict(sourcetype = 'geojson',
                                         source = geojson_url,
                                         color='#303030',
                                         type = 'line',   
-                                        line=dict(width=1.5)
+                                        line=dict(width=2)
                                    )]);
 	    st.plotly_chart(map_fig)
 	
