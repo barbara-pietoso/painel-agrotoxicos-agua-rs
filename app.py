@@ -425,7 +425,7 @@ option = {
       axisTick: {
         alignWithLabel: true
       },
-      // prettier-ignore
+
       data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   ],
