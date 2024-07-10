@@ -401,16 +401,22 @@ st.plotly_chart(grafico_mun_detec, theme = None)
 
 # Funções de layout
 
-st.markdown('''
-<style>
-/*center metric label*/
-[data-testid="stMetricLabel"] > div:nth-child(1) {
-    justify-content: center;
+css='''
+[data-testid="metric-container"] {
+    width: fit-content;
+    margin: auto;
 }
 
-/*center metric value*/
-[data-testid="stMetricValue"] > div:nth-child(1) {
-    justify-content: center;
+[data-testid="metric-container"] > div {
+    width: fit-content;
+    margin: auto;
 }
-</style>
-''', unsafe_allow_html=True)
+
+[data-testid="metric-container"] label {
+    width: fit-content;
+    margin: auto;
+}
+'''
+
+# I usually dump any scripts at the bottom of the page to avoid adding unwanted blank lines
+st.markdown(f'<style>{css}</style>',unsafe_allow_html=True)
