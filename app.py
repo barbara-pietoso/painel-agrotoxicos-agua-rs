@@ -226,7 +226,7 @@ with col4:
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    st.plotly_chart(map_fig)
 	
-	with mapa_pontos:
+	with mapa_coropletico:
 	    # Crie o mapa
 	    mapa_px = px.scatter_mapbox(
 	        data_frame=dados_consolid,
