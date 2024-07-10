@@ -24,6 +24,27 @@ col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png
 col2.title('Detecção de Agrotóxicos no Rio Grande do Sul')
 col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=300)
 
+#Dicionario CRS
+substituicoes_crs = {
+    1: "01 CRS", 
+    2: "02 CRS", 
+    3: "03 CRS", 
+    4: "04 CRS", 
+    5: "05 CRS", 
+    6: "06 CRS", 
+    7: "07 CRS", 
+    8: "08 CRS", 
+    9: "09 CRS", 
+    10: "10 CRS", 
+    11: "11 CRS", 
+    12: "12 CRS", 
+    13: "13 CRS", 
+    14: "14 CRS", 
+    15: "15 CRS", 
+    16: "16 CRS", 
+    17: "17 CRS", 
+    18: "18 CRS"
+}
 # Adicionando métricas
 col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 
@@ -32,12 +53,15 @@ col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
 dados_municipios = pd.read_csv('https://raw.githubusercontent.com/andrejarenkow/csv/master/Munic%C3%ADpios%20RS%20IBGE6%20Popula%C3%A7%C3%A3o%20CRS%20Regional%20-%20P%C3%A1gina1.csv')
 dados_municipios['Município'] = dados_municipios['Município'].apply(lambda x: unidecode(x).upper())
 dados_municipios['Município'] = dados_municipios['Município'].replace("SANT'ANA DO LIVRAMENTO", 'SANTANA DO LIVRAMENTO', regex=True)
+dados_municipios['CRS'] = dados_municipios['CRS'].replace(substituicoes_crs)
 
 # Carregar os dados
 dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
 dados['detectado'] = dados['Detecção']>0
 	
 dados['Municipio'] = dados['Municipio'].replace("SANT'ANA DO LIVRAMENTO", 'SANTANA DO LIVRAMENTO', regex=True)
+
+dados['CRS'] = dados['CRS'].replace(substituicoes_crs)
 
 # Converter a coluna 'Tipo de manancial' para string
 dados['Tipo de manancial'] = dados['Tipo de manancial'].astype(str)
