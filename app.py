@@ -399,7 +399,7 @@ st.plotly_chart(grafico_mun_detec, theme = None)
 
 # teste echarts
 option = {
-  color: '#5470C6',
+  #color: '#5470C6',
   tooltip: {
     trigger: 'axis',
     axisPointer: {
