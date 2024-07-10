@@ -408,7 +408,6 @@ options = {
 }
 st_echarts(options=options, height="500px")
 
-st_echarts(option, height="500px", key="echarts")
 
 # Funções de layout
 
