@@ -402,17 +402,17 @@ st.plotly_chart(grafico_mun_detec, theme = None)
 # Funções de layout
 
 css='''
-[data-testid="metric-container"] {
+[data-testid="stMetric"] {
     width: fit-content;
     margin: auto;
 }
 
-[data-testid="metric-container"] > div {
+[data-testid="stMetric"] > div {
     width: fit-content;
     margin: auto;
 }
 
-[data-testid="metric-container"] label {
+[data-testid="stMetric"] label {
     width: fit-content;
     margin: auto;
 }
