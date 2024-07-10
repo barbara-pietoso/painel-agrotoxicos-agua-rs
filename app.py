@@ -194,8 +194,8 @@ with col4:
 
 	# Configurando o TabBar
 	tab = stx.tab_bar(data=[
-	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta", description = "a"),
-	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos", description = "a")
+	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta", description = ""),
+	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos", description = "")
 	])
 	
 	if tab == 'mapa_coropletico':
