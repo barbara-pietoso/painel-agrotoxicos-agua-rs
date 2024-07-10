@@ -395,3 +395,22 @@ for data in grafico_mun_detec.data:
     
 #grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
+
+
+
+
+# Funções de layout
+
+st.markdown('''
+<style>
+/*center metric label*/
+[data-testid="stMetricLabel"] > div:nth-child(1) {
+    justify-content: center;
+}
+
+/*center metric value*/
+[data-testid="stMetricValue"] > div:nth-child(1) {
+    justify-content: center;
+}
+</style>
+''', unsafe_allow_html=True)
