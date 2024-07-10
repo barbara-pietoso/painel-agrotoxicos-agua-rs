@@ -263,7 +263,7 @@ with col4:
 	                'source': geojson_url,
 	                'type': 'line',
 	                'color': 'black',
-			 line=dict(width=1)
+			 'line': dict(width=1)
 	            }],
 	            center={"lat": center_lat, "lon": center_lon},
 	            zoom=zoom_ini
