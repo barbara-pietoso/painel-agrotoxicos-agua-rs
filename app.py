@@ -9,7 +9,7 @@ from streamlit_folium import st_folium, folium_static
 import altair as alt
 from unidecode import unidecode
 import textwrap
-from shapely.geometry import Point
+import extra_streamlit_components as stx
 
 # Configurações da página
 st.set_page_config(
@@ -192,10 +192,13 @@ with col4:
 	center_lat = (latitude_max + latitude_min) / 2
 	center_lon = (longitude_max + longitude_min) / 2
 
-	# Criar barra lateral para abas
-	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
-
-	with mapa_coropletico:
+	# Configurando o TabBar
+	tab1, tab2 = stx.tab_bar(data=[
+	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta"),
+	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos")
+	])
+	
+	if tab1:
 	    # Defina os intervalos e os rótulos
 	    bins = [0, 1, 3, 6, 9, float('inf')]
 	    labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
@@ -209,11 +212,11 @@ with col4:
 	        geojson=dados_mapa_final.geometry,
 	        locations=dados_mapa_final.index,
 	        color='Intervalo Coletas', 
-	        color_discrete_map={'0':'#330708', 
-	                           '1 a 2':'#d45a3c', 
-	                            '3 a 5':'#e4844a',
-	                            '6 a 8':'#e8bf56',
-	                            'mais de 8':'#ffe8a2'},
+	        color_discrete_map={'0': '#330708', 
+	                           '1 a 2': '#d45a3c', 
+	                           '3 a 5': '#e4844a',
+	                           '6 a 8': '#e8bf56',
+	                           'mais de 8': '#ffe8a2'},
 	        center={'lat': center_lat, 'lon': center_lon},
 	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
 	        zoom=zoom_ini,
@@ -226,18 +229,18 @@ with col4:
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    st.plotly_chart(map_fig)
 	
-	with mapa_pontos:
+	if tab2:
 	    # Crie o mapa
 	    mapa_px = px.scatter_mapbox(
 	        data_frame=dados_consolid,
 	        lat="Latitude",
 	        lon="Longitude",
-		center={'lat': center_lat, 'lon': center_lon},
+	        center={'lat': center_lat, 'lon': center_lon},
 	        zoom=zoom_ini,
 	        hover_data=["Municipio"],  # Use a coluna correta
 	        size="Detecções_Contagem",  # Use a coluna correta
 	        width=800,
-		height=700,
+	        height=700,
 	        color_discrete_sequence=["#f2a744"],
 	        size_max=15,  # Tamanho máximo dos pontos
 	        mapbox_style="open-street-map"
@@ -253,8 +256,6 @@ with col4:
 	    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    # Mostre o mapa no Streamlit
 	    st.plotly_chart(mapa_px)
-           
-
 with col5:        
 
         # Supondo que 'dados_filtrados' já esteja carregado
