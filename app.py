@@ -9,6 +9,7 @@ from streamlit_folium import st_folium, folium_static
 import altair as alt
 from unidecode import unidecode
 import textwrap
+from shapely.geometry import Point
 
 # Configurações da página
 st.set_page_config(
@@ -163,100 +164,93 @@ with col9:
 
 col5, col4 = st.columns([4, 4]) 
     
-with col4:  
-	# Número de coletas por município
-	municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
-	municipios_coletados.columns = ['Municipio', 'Coletas']
+# Número de coletas por município
+municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
+municipios_coletados.columns = ['Municipio', 'Coletas']
 
-	# Filtrando o geodataframe
-	municipios = municipios[municipios['NM_MUN'].isin(lista_munipios_crs)]
-	
-	#Juntando tudo no mesmo geodataframe
-	dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
-	
-        # Configurar o token do Mapbox
-	token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
-	px.set_mapbox_access_token(token)
+# Filtrando o geodataframe
+municipios = municipios[municipios['NM_MUN'].isin(lista_munipios_crs)]
 
-        # Definindo o centro do mapa
-	center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
-	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+# Juntando tudo no mesmo geodataframe
+dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
 
-	# pontos máximos e mínimos
-	latitude_max = dados_mapa_final['geometry'].centroid.y.max()
-	latitude_min = dados_mapa_final['geometry'].centroid.y.min()
-	longitude_max = dados_mapa_final['geometry'].centroid.x.max()
-	longitude_min = dados_mapa_final['geometry'].centroid.x.min()
-	
-	center_lat = (latitude_max + latitude_min)/2
-	center_lon = (longitude_max + longitude_min)/2
-        
-        # Criar barra lateral para abas
-	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
-        
-        # Definir layout baseado na aba selecionada
-        
+# Configurar o token do Mapbox
+token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
+px.set_mapbox_access_token(token)
+
+# Definindo o centro do mapa
+center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
+center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+
+# Pontos máximos e mínimos
+latitude_max = dados_mapa_final['geometry'].centroid.y.max()
+latitude_min = dados_mapa_final['geometry'].centroid.y.min()
+longitude_max = dados_mapa_final['geometry'].centroid.x.max()
+longitude_min = dados_mapa_final['geometry'].centroid.x.min()
+
+center_lat = (latitude_max + latitude_min) / 2
+center_lon = (longitude_max + longitude_min) / 2
+
+# Criar barra lateral para abas
+mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
+
 	with mapa_coropletico:
-            # Defina os intervalos e os rótulos
-            bins = [0, 1, 3, 6, 9, float('inf')]
-            labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
-            
-            # Crie a nova coluna de intervalos
-            dados_mapa_final['Intervalo Coletas'] = pd.cut(dados_mapa_final['Coletas'], bins=bins, labels=labels, right=False)
-
-            # Crie o mapa choropleth
-            map_fig = px.choropleth_mapbox(
-                dados_mapa_final,
-                geojson=dados_mapa_final.geometry,
-                locations=dados_mapa_final.index,
-                color='Intervalo Coletas', 
-                color_discrete_map={'0':'#330708', 
-                                   '1 a 2':'#d45a3c', 
-                                    '3 a 5':'#e4844a',
-                                    '6 a 8':'#e8bf56',
-                                    'mais de 8':'#ffe8a2'},
-                center={'lat':center_lat, 'lon': center_lon},
-		category_orders = {'Intervalo Coletas':['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
-                zoom=zoom,
-                mapbox_style="open-street-map",
-                hover_name='NM_MUN',
-                width=800,
-                height=700,
-                #title='Coletas agrotóxicos',
-               )
-            
-            map_fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0})
-            st.plotly_chart(map_fig)
-        
-        
+	    # Defina os intervalos e os rótulos
+	    bins = [0, 1, 3, 6, 9, float('inf')]
+	    labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
+	    
+	    # Crie a nova coluna de intervalos
+	    dados_mapa_final['Intervalo Coletas'] = pd.cut(dados_mapa_final['Coletas'], bins=bins, labels=labels, right=False)
+	
+	    # Crie o mapa choropleth
+	    map_fig = px.choropleth_mapbox(
+	        dados_mapa_final,
+	        geojson=dados_mapa_final.geometry,
+	        locations=dados_mapa_final.index,
+	        color='Intervalo Coletas', 
+	        color_discrete_map={'0':'#330708', 
+	                           '1 a 2':'#d45a3c', 
+	                            '3 a 5':'#e4844a',
+	                            '6 a 8':'#e8bf56',
+	                            'mais de 8':'#ffe8a2'},
+	        center={'lat': center_lat, 'lon': center_lon},
+	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
+	        zoom=7,
+	        mapbox_style="open-street-map",
+	        hover_name='NM_MUN',
+	        width=800,
+	        height=700
+	    )
+	    
+	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+	    st.plotly_chart(map_fig)
+	
 	with mapa_pontos:
-            # Crie o mapa
-            mapa_px = px.scatter_mapbox(
-                data_frame=dados_consolid,
-                lat="Latitude",
-                lon="Longitude",
-                #title="Mapa de Pontos de Detecção de Agrotóxicos no RS",
-                zoom=6,
-                hover_data="Municipio",  # Use a coluna correta
-                size="Detecções_Contagem",  # Use a coluna correta
-                height=800,
-                width=700,
-                color_discrete_sequence=["#f2a744"],
-                size_max=15, #tamanho maximo dos pontos
-                mapbox_style="open-street-map"
-            )
-            
-            # Adicione uma legenda
-            mapa_px.update_layout(
-                #legend_title="Detecção de Agrotóxicos no RS",
-                mapbox=dict(
-                    center={"lat": center_lat, "lon": center_lon},  # Reforçando a centralização
-                    zoom=5.7
-                )
-            )
-            mapa_px.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-            # Mostre o mapa no Streamlit
-            st.plotly_chart(mapa_px)
+	    # Crie o mapa
+	    mapa_px = px.scatter_mapbox(
+	        data_frame=dados_consolid,
+	        lat="Latitude",
+	        lon="Longitude",
+	        zoom=7,
+	        hover_data=["Municipio"],  # Use a coluna correta
+	        size="Detecções_Contagem",  # Use a coluna correta
+	        height=700,
+	        width=800,
+	        color_discrete_sequence=["#f2a744"],
+	        size_max=15,  # Tamanho máximo dos pontos
+	        mapbox_style="open-street-map"
+	    )
+	    
+	    # Adicione uma legenda
+	    mapa_px.update_layout(
+	        mapbox=dict(
+	            center={"lat": center_lat, "lon": center_lon},
+	            zoom=7
+	        )
+	    )
+	    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+	    # Mostre o mapa no Streamlit
+	    st.plotly_chart(mapa_px)
            
 
 
