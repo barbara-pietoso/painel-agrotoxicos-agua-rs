@@ -26,24 +26,24 @@ col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%2
 
 #Dicionario CRS
 substituicoes_crs = {
-    1: "01 CRS", 
-    2: "02 CRS", 
-    3: "03 CRS", 
-    4: "04 CRS", 
-    5: "05 CRS", 
-    6: "06 CRS", 
-    7: "07 CRS", 
-    8: "08 CRS", 
-    9: "09 CRS", 
-    10: "10 CRS", 
-    11: "11 CRS", 
-    12: "12 CRS", 
-    13: "13 CRS", 
-    14: "14 CRS", 
-    15: "15 CRS", 
-    16: "16 CRS", 
-    17: "17 CRS", 
-    18: "18 CRS"
+    1: "01ª CRS", 
+    2: "02ª CRS", 
+    3: "03ª CRS", 
+    4: "04ª CRS", 
+    5: "05ª CRS", 
+    6: "06ª CRS", 
+    7: "07ª CRS", 
+    8: "08ª CRS", 
+    9: "09ª CRS", 
+    10: "10ª CRS", 
+    11: "11ª CRS", 
+    12: "12ª CRS", 
+    13: "13ª CRS", 
+    14: "14ª CRS", 
+    15: "15ª CRS", 
+    16: "16ª CRS", 
+    17: "17ª CRS", 
+    18: "18ª CRS"
 }
 # Adicionando métricas
 col10, col6, col7, col8, col9 = st.columns([2,1,1,1,1])
