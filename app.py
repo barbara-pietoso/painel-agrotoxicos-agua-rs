@@ -230,6 +230,13 @@ with col4:
 	    )
 	    
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+	    map_fig.update_layout(title_text='Swiss Canton Choroplethmapbox with Boundary Lines',
+                  mapbox_layers = [dict(sourcetype = 'geojson',
+                                        source = geojson_url,
+                                        color='#303030',
+                                        type = 'line',   
+                                        line=dict(width=1)
+                                   )]);
 	    st.plotly_chart(map_fig)
 	
 	if tab == 'mapa_pontos':
