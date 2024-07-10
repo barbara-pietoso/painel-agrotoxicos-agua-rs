@@ -193,12 +193,12 @@ with col4:
 	center_lon = (longitude_max + longitude_min) / 2
 
 	# Configurando o TabBar
-	tab1, tab2 = stx.tab_bar(data=[
+	tab = stx.tab_bar(data=[
 	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta", description = "a"),
 	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos", description = "a")
 	])
 	
-	if tab1:
+	if tab == 'mapa_coropletico':
 	    # Defina os intervalos e os rótulos
 	    bins = [0, 1, 3, 6, 9, float('inf')]
 	    labels = ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']
@@ -229,7 +229,7 @@ with col4:
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    st.plotly_chart(map_fig)
 	
-	if tab2:
+	if tab == 'mapa_pontos':
 	    # Crie o mapa
 	    mapa_px = px.scatter_mapbox(
 	        data_frame=dados_consolid,
