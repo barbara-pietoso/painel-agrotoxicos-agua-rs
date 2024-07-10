@@ -95,11 +95,11 @@ with col10:
 		    lista_crs_selectbox.insert(0,'Todas')
 		    CRS = st.selectbox("Selecione a CRS", lista_crs_selectbox, index=0, placeholder="Nenhuma CRS selecionada")
 		    lista_munipios_crs = dados_municipios['Município']
-		    zoom=5.5
+		    zoom_ini=5.5
 		    if CRS != 'Todas':
 			    dados = dados[dados['CRS']==CRS]
 			    lista_munipios_crs = dados_municipios[dados_municipios['CRS']==CRS]['Município']
-			    zoom=7
+			    zoom_ini=7
 		
     
 	    with coluna_captacao:
@@ -216,7 +216,7 @@ with col4:
 	                            'mais de 8':'#ffe8a2'},
 	        center={'lat': center_lat, 'lon': center_lon},
 	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
-	        zoom=7,
+	        zoom=zoom_ini,
 	        mapbox_style="open-street-map",
 	        hover_name='NM_MUN',
 	        width=800,
@@ -232,7 +232,7 @@ with col4:
 	        data_frame=dados_consolid,
 	        lat="Latitude",
 	        lon="Longitude",
-	        zoom=7,
+	        zoom=zoom_ini,
 	        hover_data=["Municipio"],  # Use a coluna correta
 	        size="Detecções_Contagem",  # Use a coluna correta
 	        height=700,
