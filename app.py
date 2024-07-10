@@ -164,32 +164,33 @@ with col9:
 
 col5, col4 = st.columns([4, 4]) 
     
-# Número de coletas por município
-municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
-municipios_coletados.columns = ['Municipio', 'Coletas']
-
-# Filtrando o geodataframe
-municipios = municipios[municipios['NM_MUN'].isin(lista_munipios_crs)]
-
-# Juntando tudo no mesmo geodataframe
-dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
-
-# Configurar o token do Mapbox
-token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
-px.set_mapbox_access_token(token)
-
-# Definindo o centro do mapa
-center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
-center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
-
-# Pontos máximos e mínimos
-latitude_max = dados_mapa_final['geometry'].centroid.y.max()
-latitude_min = dados_mapa_final['geometry'].centroid.y.min()
-longitude_max = dados_mapa_final['geometry'].centroid.x.max()
-longitude_min = dados_mapa_final['geometry'].centroid.x.min()
-
-center_lat = (latitude_max + latitude_min) / 2
-center_lon = (longitude_max + longitude_min) / 2
+with col4:  
+	# Número de coletas por município
+	municipios_coletados = pd.pivot_table(dados, index='Municipio', aggfunc='size').reset_index()
+	municipios_coletados.columns = ['Municipio', 'Coletas']
+	
+	# Filtrando o geodataframe
+	municipios = municipios[municipios['NM_MUN'].isin(lista_munipios_crs)]
+	
+	# Juntando tudo no mesmo geodataframe
+	dados_mapa_final = municipios.merge(municipios_coletados, how='left', right_on='Municipio', left_on='NM_MUN').fillna(0)
+	
+	# Configurar o token do Mapbox
+	token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
+	px.set_mapbox_access_token(token)
+	
+	# Definindo o centro do mapa
+	center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
+	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
+	
+	# Pontos máximos e mínimos
+	latitude_max = dados_mapa_final['geometry'].centroid.y.max()
+	latitude_min = dados_mapa_final['geometry'].centroid.y.min()
+	longitude_max = dados_mapa_final['geometry'].centroid.x.max()
+	longitude_min = dados_mapa_final['geometry'].centroid.x.min()
+	
+	center_lat = (latitude_max + latitude_min) / 2
+	center_lon = (longitude_max + longitude_min) / 2
 
 	# Criar barra lateral para abas
 	mapa_coropletico, mapa_pontos = st.tabs(['Mapa de Municípios com Coleta', 'Mapa de Detecção de Agrotóxicos'])
