@@ -10,6 +10,7 @@ import altair as alt
 from unidecode import unidecode
 import textwrap
 import extra_streamlit_components as stx
+from streamlit_echarts import st_echarts
 
 # Configurações da página
 st.set_page_config(
@@ -396,8 +397,23 @@ for data in grafico_mun_detec.data:
 #grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
 
-
-
+# teste echarts
+options = {
+    "xAxis": {
+        "type": "category",
+        "boundaryGap": False,
+        "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    },
+    "yAxis": {"type": "value"},
+    "series": [
+        {
+            "data": [820, 932, 901, 934, 1290, 1330, 1320],
+            "type": "line",
+            "areaStyle": {},
+        }
+    ],
+}
+st_echarts(options=options)
 
 # Funções de layout
 
