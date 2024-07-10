@@ -179,6 +179,9 @@ with col4:
 	token = 'pk.eyJ1IjoiYW5kcmUtamFyZW5rb3ciLCJhIjoiY2xkdzZ2eDdxMDRmMzN1bnV6MnlpNnNweSJ9.4_9fi6bcTxgy5mGaTmE4Pw'
 	px.set_mapbox_access_token(token)
 	
+	# Seu link GeoJSON
+	geojson_url = "https://raw.githubusercontent.com/andrejarenkow/geodata/main/RS_por_CRS/RS_por_CRS.json"
+	
 	# Definindo o centro do mapa
 	center_lat = -30.5  # Latitude central aproximada do Rio Grande do Sul
 	center_lon = -53  # Longitude central aproximada do Rio Grande do Sul
@@ -191,11 +194,11 @@ with col4:
 	
 	center_lat = (latitude_max + latitude_min) / 2
 	center_lon = (longitude_max + longitude_min) / 2
-
+	
 	# Configurando o TabBar
 	tab = stx.tab_bar(data=[
-	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta", description = ""),
-	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos", description = "")
+	    stx.TabBarItemData(id="mapa_coropletico", title="Mapa de Municípios com Coleta", description=""),
+	    stx.TabBarItemData(id="mapa_pontos", title="Mapa de Detecção de Agrotóxicos", description="")
 	])
 	
 	if tab == 'mapa_coropletico':
@@ -209,17 +212,17 @@ with col4:
 	    # Crie o mapa choropleth
 	    map_fig = px.choropleth_mapbox(
 	        dados_mapa_final,
-	        geojson=dados_mapa_final.geometry,
+	        geojson=geojson_url,
 	        locations=dados_mapa_final.index,
 	        color='Intervalo Coletas', 
 	        color_discrete_map={'0': '#330708', 
-	                           '1 a 2': '#d45a3c', 
-	                           '3 a 5': '#e4844a',
-	                           '6 a 8': '#e8bf56',
-	                           'mais de 8': '#ffe8a2'},
+	                            '1 a 2': '#d45a3c', 
+	                            '3 a 5': '#e4844a',
+	                            '6 a 8': '#e8bf56',
+	                            'mais de 8': '#ffe8a2'},
 	        center={'lat': center_lat, 'lon': center_lon},
 	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
-	        zoom=zoom_ini,
+	        zoom=7,  # Defina seu nível de zoom inicial
 	        mapbox_style="open-street-map",
 	        hover_name='NM_MUN',
 	        width=800,
@@ -236,7 +239,7 @@ with col4:
 	        lat="Latitude",
 	        lon="Longitude",
 	        center={'lat': center_lat, 'lon': center_lon},
-	        zoom=zoom_ini,
+	        zoom=7,  # Defina seu nível de zoom inicial
 	        hover_data=["Municipio"],  # Use a coluna correta
 	        size="Detecções_Contagem",  # Use a coluna correta
 	        width=800,
@@ -246,13 +249,19 @@ with col4:
 	        mapbox_style="open-street-map"
 	    )
 	    
-	    # Adicione uma legenda
+	    # Adicione o GeoJSON ao mapa
 	    mapa_px.update_layout(
 	        mapbox=dict(
+	            layers=[{
+	                'source': geojson_url,
+	                'type': 'line',
+	                'color': 'blue'
+	            }],
 	            center={"lat": center_lat, "lon": center_lon},
-	            zoom=zoom_ini
+	            zoom=7
 	        )
 	    )
+	
 	    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    # Mostre o mapa no Streamlit
 	    st.plotly_chart(mapa_px)
