@@ -215,11 +215,11 @@ with col4:
 	        geojson=dados_mapa_final.geometry,
 	        locations=dados_mapa_final.index,
 	        color='Intervalo Coletas', 
-	        color_discrete_map={'0': 'rgba(51, 7, 8, 0.7)', 
-                                    '1 a 2': 'rgba(212, 90, 60, 0.7)', 
-                                    '3 a 5': 'rgba(228, 132, 74, 0.7)',
-	                            '6 a 8': 'rgba(232, 191, 86, 0.7)',
-	                            'mais de 8': 'rgba(255, 232, 162, 0.7)'},
+	        color_discrete_map={'0': 'rgba(51, 7, 8, 0.6)', 
+                                    '1 a 2': 'rgba(212, 90, 60, 0.6)', 
+                                    '3 a 5': 'rgba(228, 132, 74, 0.6)',
+	                            '6 a 8': 'rgba(232, 191, 86, 0.6)',
+	                            'mais de 8': 'rgba(255, 232, 162, 0.6)'},
 	        center={'lat': center_lat, 'lon': center_lon},
 	        category_orders={'Intervalo Coletas': ['0', '1 a 2', '3 a 5', '6 a 8', 'mais de 8']},
 	        zoom=zoom_ini,  # Defina seu nível de zoom inicial
@@ -229,14 +229,14 @@ with col4:
 	        height=700
 	    )
             # Diminuir a grossura da linha
-	    map_fig.update_traces(marker_line_width=0.4)  # Ajuste o valor conforme desejado	
+	    map_fig.update_traces(marker_line_width=0.3)  # Ajuste o valor conforme desejado	
 	    map_fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    map_fig.update_layout(title_text='Swiss Canton Choroplethmapbox with Boundary Lines',
                   mapbox_layers = [dict(sourcetype = 'geojson',
                                         source = geojson_url,
                                         color='#303030',
                                         type = 'line',   
-                                        line=dict(width=2)
+                                        line=dict(width=1.7)
                                    )]);
 	    st.plotly_chart(map_fig)
 	
