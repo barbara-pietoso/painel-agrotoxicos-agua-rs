@@ -438,13 +438,13 @@ option = {
         {
             "name": "Total de amostras",
             "type": "bar",
-            "data": [18, 64, 143, 82, 70, 64, 55, 85, 115, 167, 174, 201]
+            "data": detec_perc_mes_total.to_list()
         },
         {
             "name": "Percentual de detecção",
             "type": "line",
             "yAxisIndex": 1,
-            "data": [0,15.6, 15.4, 8.6, 10, 6.2, 7.3, 2.4, 6.1, 7.8, 10.9, 8]
+            "data": detec_perc_mes.to_list()
         }
     ]
 }
