@@ -417,8 +417,8 @@ option = {
             "type": "value",
             "name": "Total de amostras",
             "min": 0,
-            "max": detec_perc_mes_total.max()*1.2,
-            "interval": detec_perc_mes_total.max()*1.2/5,
+            "max": round(detec_perc_mes_total.max()*1.2, 0),
+            "interval": round(detec_perc_mes_total.max()*1.2/5, 0),
             "axisLabel": {
                 "formatter": "{value}"
             }
