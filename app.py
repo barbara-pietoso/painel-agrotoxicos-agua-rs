@@ -11,6 +11,7 @@ from unidecode import unidecode
 import textwrap
 import extra_streamlit_components as stx
 from streamlit_echarts import st_echarts
+import math
 
 # Configurações da página
 st.set_page_config(
@@ -417,8 +418,8 @@ option = {
             "type": "value",
             "name": "Total de amostras",
             "min": 0,
-            "max": round(detec_perc_mes_total.max()*1.2, 0),
-            "interval": round(detec_perc_mes_total.max()*1.2/5, 0),
+            "max": math.ceil(detec_perc_mes_total.max()*1.2),
+            "interval": math.ceil(detec_perc_mes_total.max()*1.2)/5,
             "axisLabel": {
                 "formatter": "{value}"
             }
