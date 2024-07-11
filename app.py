@@ -417,7 +417,7 @@ option = {
             "type": "value",
             "name": "Total de amostras",
             "min": 0,
-            "max": 250,
+            "max": detec_perc_mes_total.max()*1.2,
             "interval": 50,
             "axisLabel": {
                 "formatter": "{value}"
@@ -427,7 +427,7 @@ option = {
             "type": "value",
             "name": "Percentual de detecção",
             "min": 0,
-            "max": 25,
+            "max": detec_perc_mes.max()*1.2,
             "interval": 5,
             "axisLabel": {
                 "formatter": "{value} %"
