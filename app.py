@@ -398,62 +398,6 @@ for data in grafico_mun_detec.data:
 #grafico_mun_detec.layout.hovermode = False
 st.plotly_chart(grafico_mun_detec, theme = None)
 
-# teste echarts
-option = {
-    "tooltip": {
-        "trigger": "axis",
-        "axisPointer": {
-            "type": "cross"
-        }
-    },
-    "xAxis": {
-        "type": "category",
-        "data": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-        "axisPointer": {
-            "type": "shadow"
-        }
-    },
-    "yAxis": [
-        {
-            "type": "value",
-            "name": "Total de amostras",
-            "min": 0,
-            "max": math.ceil(detec_perc_mes_total.max()*1.2),
-            "interval": math.ceil(detec_perc_mes_total.max()*1.2)/5,
-            "axisLabel": {
-                "formatter": "{value}"
-            }
-        },
-        {
-            "type": "value",
-            "name": "Percentual de detecção",
-            "min": 0,
-            "max": 100,
-            "interval": 20,
-            "axisLabel": {
-                "formatter": "{value} %"
-            }
-        }
-    ],
-    "series": [
-        {
-            "name": "Total de amostras",
-            "type": "bar",
-            "data": detec_perc_mes_total.to_list()
-        },
-        {
-            "name": "Percentual de detecção",
-            "type": "line",
-            "yAxisIndex": 1,
-            "data": detec_perc_mes.to_list()
-        }
-    ]
-}
-
-st_echarts(
-    options=option, height="400px",
-)
-
 
 # Funções de layout
 
