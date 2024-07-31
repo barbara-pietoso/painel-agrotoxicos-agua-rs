@@ -23,9 +23,9 @@ st.set_page_config(
 
 col1, col2, col3 = st.columns([2,5,1], vertical_alignment="center")
 
-col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=200)
+col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=100)
 col2.title('Detecção de Agrotóxicos no Rio Grande do Sul')
-col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=300)
+col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=150)
 
 #Dicionario CRS
 substituicoes_crs = {
