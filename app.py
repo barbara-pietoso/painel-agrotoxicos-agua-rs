@@ -341,7 +341,7 @@ with col5:
                 side='right'
             ),
             height=300,
-            legend=dict(x=0.4, y=1.2, bgcolor='rgba(255, 255, 255, 0)')
+            legend=dict(x=0.4, y=1.5, bgcolor='rgba(255, 255, 255, 0)')
         )
 
     
