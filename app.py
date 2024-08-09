@@ -330,6 +330,7 @@ with col5:
             ),
             yaxis=dict(
                 title='Percentual de Detecção',
+		range=[0, 100]
                 #titlefont=dict(color='blue'),
                 #tickfont=dict(color='blue')
             ),
