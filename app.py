@@ -21,7 +21,7 @@ st.set_page_config(
     initial_sidebar_state='collapsed'
 )
 
-col1, col2, col3 = st.columns([2,5,1], vertical_alignment="center")
+col1, col2, col3 = st.columns([1,5,1], vertical_alignment="center")
 
 col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=100)
 col2.title('Monitoramento de Agrotóxicos na Água no Rio Grande do Sul')
