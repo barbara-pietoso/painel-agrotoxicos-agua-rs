@@ -15,7 +15,7 @@ import math
 
 # Configurações da página
 st.set_page_config(
-    page_title="Detecção de Agrotóxicos no Rio Grande do Sul",
+    page_title="Detecção de Agrotóxicos na Água no Rio Grande do Sul - Dados FioCruz",
     page_icon="	:skull:",
     layout="wide",
     initial_sidebar_state='collapsed'
