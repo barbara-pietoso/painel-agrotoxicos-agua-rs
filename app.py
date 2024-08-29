@@ -24,7 +24,7 @@ st.set_page_config(
 col1, col2, col3 = st.columns([1,5,1], vertical_alignment="center")
 
 col3.image('https://github.com/andrejarenkow/csv/blob/master/logo_cevs%20(2).png?raw=true', width=100)
-col2.title('Monitoramento de Agrotóxicos na Água no Rio Grande do Sul - Dados FioCruz')
+col2.title('Monitoramento de Agrotóxicos na Água no Rio Grande do Sul')
 col1.image('https://github.com/andrejarenkow/csv/blob/master/logo_estado%20(3)%20(1).png?raw=true', width=150)
 
 #Dicionario CRS
