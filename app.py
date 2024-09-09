@@ -241,40 +241,40 @@ with col4:
                                    )]);
 	    st.plotly_chart(map_fig)
 	
-	if tab == 'mapa_pontos':
+	#if tab == 'mapa_pontos':
 	    # Crie o mapa
-	    mapa_px = px.scatter_mapbox(
-	        data_frame=dados_consolid,
-	        lat="Latitude",
-	        lon="Longitude",
-	        center={'lat': center_lat, 'lon': center_lon},
-	        zoom=zoom_ini,  # Defina seu nível de zoom inicial
-	        hover_data=["Municipio"],  # Use a coluna correta
-	        size="Detecções_Contagem",  # Use a coluna correta
-	        width=800,
-	        height=700,
-	        color_discrete_sequence=["#f2a744"],
-	        size_max=15,  # Tamanho máximo dos pontos
-	        mapbox_style="open-street-map"
-	    )
+	#    mapa_px = px.scatter_mapbox(
+	#        data_frame=dados_consolid,
+	#        lat="Latitude",
+	#        lon="Longitude",
+	#        center={'lat': center_lat, 'lon': center_lon},
+	#        zoom=zoom_ini,  # Defina seu nível de zoom inicial
+	#        hover_data=["Municipio"],  # Use a coluna correta
+	#        size="Detecções_Contagem",  # Use a coluna correta
+	#        width=800,
+	#        height=700,
+	#        color_discrete_sequence=["#f2a744"],
+	#        size_max=15,  # Tamanho máximo dos pontos
+	#        mapbox_style="open-street-map"
+	#    )
 	    
 	    # Adicione o GeoJSON ao mapa
-	    mapa_px.update_layout(
-	        mapbox=dict(
-	            layers=[{
-	                'source': geojson_url,
-	                'type': 'line',
-	                'color': 'black',
-			 'line': dict(width=1)
-	            }],
-	            center={"lat": center_lat, "lon": center_lon},
-	            zoom=zoom_ini
-	        )
-	    )
+	#    mapa_px.update_layout(
+	#        mapbox=dict(
+	#            layers=[{
+	#                'source': geojson_url,
+	#                'type': 'line',
+	#                'color': 'black',
+#			 'line': dict(width=1)
+	            #}],
+	#            center={"lat": center_lat, "lon": center_lon},
+	#            zoom=zoom_ini
+	#        )
+	#    )
 	
-	    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+	#    mapa_px.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 	    # Mostre o mapa no Streamlit
-	    st.plotly_chart(mapa_px)
+	    #st.plotly_chart(mapa_px)
 with col5:        
 
         # Supondo que 'dados_filtrados' já esteja carregado
