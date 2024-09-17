@@ -59,7 +59,7 @@ dados_municipios['Município'] = dados_municipios['Município'].replace("SANT'AN
 dados_municipios['CRS'] = dados_municipios['CRS'].replace(substituicoes_crs)
 
 # Carregar os dados
-dados = pd.read_excel('https://docs.google.com/spreadsheets/d/e/2PACX-1vRR1E1xhXucgiQW8_cOOZ0BzBlMpfz6U9sUY9p1t8pyn3gu0NvWBYsMtCHGhJvXt2QYvCLM1rR7ZpAG/pub?output=xlsx')
+dados = pd.read_excel(st.secrets["link_planilha"])
 dados['detectado'] = dados['Detecção']>0
 	
 dados['Municipio'] = dados['Municipio'].replace("SANT'ANA DO LIVRAMENTO", 'SANTANA DO LIVRAMENTO', regex=True)
