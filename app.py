@@ -18,7 +18,7 @@ st.set_page_config(
     page_title="Detecção de Agrotóxicos na Água no Rio Grande do Sul",
     page_icon="	:skull:",
     layout="wide",
-    initial_sidebar_state='collapsed'
+    initial_sidebar_state='collapsed',
     menu_items={
          'Get help': None,
          'Report a bug': None,
