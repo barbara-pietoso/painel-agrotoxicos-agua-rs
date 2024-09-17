@@ -18,12 +18,8 @@ st.set_page_config(
     page_title="Detecção de Agrotóxicos na Água no Rio Grande do Sul",
     page_icon="	:skull:",
     layout="wide",
-    initial_sidebar_state='collapsed',
-    menu_items={
-         'Get help': None,
-         'Report a bug': None,
-         'About': None
-    })
+    initial_sidebar_state='collapsed'
+)
 
 col1, col2, col3 = st.columns([1,5,1], vertical_alignment="center")
 
