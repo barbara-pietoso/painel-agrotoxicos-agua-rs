@@ -19,7 +19,11 @@ st.set_page_config(
     page_icon="	:skull:",
     layout="wide",
     initial_sidebar_state='collapsed'
-)
+    menu_items={
+         'Get help': None,
+         'Report a bug': None,
+         'About': None
+    })
 
 col1, col2, col3 = st.columns([1,5,1], vertical_alignment="center")
 
